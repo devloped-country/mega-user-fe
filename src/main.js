@@ -2,5 +2,8 @@ import { createApp } from 'vue';
 import App from './App.vue';
 import { router } from '@/router';
 import VueCryptojs from 'vue-cryptojs';
+import { createPinia } from 'pinia';
 
-createApp(App).use(VueCryptojs).use(router).mount('#app');
+const pinia = createPinia();
+
+createApp(App).use(pinia).use(VueCryptojs).use(router).mount('#app');
