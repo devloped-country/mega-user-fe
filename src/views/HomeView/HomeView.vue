@@ -1,27 +1,72 @@
-<template></template>
+<template>
+  <Modal :title="title">
+    <div>여기서 모달마다 다른 기능을 구현하여 slot으로 넘겨줘요.</div>
+  </Modal>
+</template>
 
 <script setup>
+import { ref } from 'vue';
 import { useRouter } from 'vue-router';
-import { useAxioses } from '../../composables/axioses';
+import { useAxios, useAxioses, useMutation } from '@/composables';
+import Modal from '@/teleport/Modal/Modal.vue';
 
+const id = ref('');
+const pw = ref('');
+const title = ref('여기서는 모달의 공통 스타일을 정의해요.');
 const router = useRouter();
 
-const { data } = useAxioses([
-  {
-    method: 'get',
-    url: '/notice',
+const { data: axiosData } = useAxios('/notice', {
+  method: 'get',
+  onSuccess: (res) => {
+    console.log('통신 성공!');
+    console.log(res);
   },
-  {
-    method: 'get',
-    url: '/notice',
+  onError: (res) => {
+    console.log('통신 실패!');
+    console.log(res);
   },
-  {
-    method: 'get',
-    url: '/notice',
-  },
-]);
+});
 
-console.log(data);
+const { data: axiosesData } = useAxioses(
+  [
+    {
+      method: 'get',
+      url: '/notice',
+    },
+    {
+      method: 'get',
+      url: '/notice',
+    },
+    {
+      method: 'get',
+      url: '/notice',
+    },
+  ],
+  {
+    onSuccess: (res) => {
+      console.log('통신 성공!');
+      console.log(res);
+    },
+    onError: (res) => {
+      console.log('통신 실패!');
+      console.log(res);
+    },
+  }
+);
+
+const { mutate } = useMutation('/notice', {
+  method: 'post',
+  onSuccess: (res) => {
+    console.log('통신 성공!');
+    console.log(res);
+  },
+  onError: (res) => {
+    console.log('통신 실패!');
+    console.log(res);
+  },
+});
+
+mutate({ id, pw });
 </script>
 
 <style module="classes">

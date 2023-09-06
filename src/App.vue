@@ -1,8 +1,13 @@
 <template>
+  <Header />
   <RouterView />
+  <Footer />
 </template>
 
-<script setup></script>
+<script setup>
+import Header from '@/layout/Header/Header.vue';
+import Footer from '@/layout/Footer/Footer.vue';
+</script>
 
 <style>
 @import '@/assets/css/reset.css';
