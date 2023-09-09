@@ -26,22 +26,9 @@ const { data: noticeData, fetchData: fetchNotice } = useFetch('/notice', {
     console.log(res);
   },
 });
-fetchNotice();
+
 const { data: noticesData, fetchData: fetchNotices } = useFetchs(
-  [
-    {
-      method: 'get',
-      url: '/notice',
-    },
-    {
-      method: 'get',
-      url: '/notice',
-    },
-    {
-      method: 'get',
-      url: '/notice',
-    },
-  ],
+  ['/notice', '/notice', '/notice'],
   {
     onSuccess: (res) => {
       console.log('통신 성공!');
@@ -67,9 +54,9 @@ const { mutate } = useMutation('/notice', {
 });
 
 onMounted(() => {
-  fetchNotice;
+  fetchNotice();
   fetchNotices();
-  mutate({ id, pw });
+  // mutate({ id, pw });
 });
 </script>
 
