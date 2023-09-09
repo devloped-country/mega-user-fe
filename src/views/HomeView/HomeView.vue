@@ -5,9 +5,9 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { onMounted, ref } from 'vue';
 import { useRouter } from 'vue-router';
-import { useAxios, useAxioses, useMutation } from '@/composables';
+import { useFetch, useFetchs, useMutation } from '@/composables';
 import Modal from '@/teleport/Modal/Modal.vue';
 
 const id = ref('');
@@ -15,7 +15,7 @@ const pw = ref('');
 const title = ref('여기서는 모달의 공통 스타일을 정의해요.');
 const router = useRouter();
 
-const { data: axiosData } = useAxios('/notice', {
+const { data: noticeData, fetchData: fetchNotice } = useFetch('/notice', {
   method: 'get',
   onSuccess: (res) => {
     console.log('통신 성공!');
@@ -26,8 +26,8 @@ const { data: axiosData } = useAxios('/notice', {
     console.log(res);
   },
 });
-
-const { data: axiosesData } = useAxioses(
+fetchNotice();
+const { data: noticesData, fetchData: fetchNotices } = useFetchs(
   [
     {
       method: 'get',
@@ -66,7 +66,11 @@ const { mutate } = useMutation('/notice', {
   },
 });
 
-mutate({ id, pw });
+onMounted(() => {
+  fetchNotice;
+  fetchNotices();
+  mutate({ id, pw });
+});
 </script>
 
 <style module="classes">

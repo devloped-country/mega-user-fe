@@ -1,7 +1,7 @@
 import { api } from '@/api/api.js';
 import { ref } from 'vue';
 
-export function useAxios(url, config = {}) {
+export function useFetch(url, config = {}) {
   const data = ref();
   const isLoading = ref(false);
   const isSuccess = ref(false);
@@ -32,7 +32,5 @@ export function useAxios(url, config = {}) {
     }
   };
 
-  fetchData();
-
-  return { data, isLoading, isSuccess, isError };
+  return { data, isLoading, isSuccess, isError, fetchData };
 }
