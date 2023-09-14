@@ -5,9 +5,9 @@
 </template>
 
 <script setup>
-import Reader from '@/components/QR/Reader.vue';
+import Reader from '@/components/Qr/Reader.vue';
 </script>
 
 <style module="classes" scoped>
-@import './QrView.css';
+@import './QrReaderView.css';
 </style>

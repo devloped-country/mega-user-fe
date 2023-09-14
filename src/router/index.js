@@ -1,5 +1,5 @@
 import HomeView from '@/views/HomeView/HomeView.vue';
-import QrView from '@/views/QrView/QrView.vue';
+import QrReaderView from '@/views/QrReaderView/QrReaderView.vue';
 
 import { createRouter, createWebHistory } from 'vue-router';
 
@@ -11,8 +11,8 @@ const routes = [
   },
   {
     path: '/qr',
-    component: QrView,
-    name: 'QrView',
+    component: QrReaderView,
+    name: 'QrReaderView',
   },
 ];
 
