@@ -1,5 +1,5 @@
-import HomeView from '../views/HomeView/HomeView.vue';
-import QrView from '../views/QrView/QrView.vue';
+import HomeView from '@/views/HomeView/HomeView.vue';
+import QrView from '@/views/QrView/QrView.vue';
 
 import { createRouter, createWebHistory } from 'vue-router';
 
