@@ -22,6 +22,7 @@ const router = useRouter();
 const { info } = useFooter();
 
 const handleClickMenu = (route) => {
+  console.log(route);
   router.push({
     name: route,
   });
