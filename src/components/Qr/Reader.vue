@@ -2,6 +2,7 @@
   <div
     style="z-index: 50; color: white; position: absolute; top: 50%; left: 50%"
   >
+    "!!!!"
     {{ longitude }}
     {{ latitude }}
   </div>
