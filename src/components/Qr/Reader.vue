@@ -1,4 +1,8 @@
 <template>
+  <div style="background-color: white">
+    {{ longitude }}
+    {{ latitude }}
+  </div>
   <qrcode-stream @detect="onDetect" class="qr" @camera-on="onCameraOn">
     <div class="loadingIndicator" v-if="loading" />
     <header class="qrHeader">
@@ -22,11 +26,13 @@
 <script setup>
 import { useRouter } from 'vue-router';
 import { QrcodeStream } from 'vue-qrcode-reader';
-import { ref } from 'vue';
+import { ref, onMounted } from 'vue';
 import { useFetch } from '@/composables';
 
 const router = useRouter();
 const loading = ref(true);
+const latitude = ref();
+const longitude = ref();
 const url = ref('');
 
 const { data, fetchData } = useFetch('', {
@@ -66,6 +72,21 @@ const onDetect = (detectedCodes) => {
 
 const onCameraOn = () => {
   loading.value = false;
+};
+
+onMounted(() => {
+  getLocation();
+});
+
+const getLocation = () => {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(showPosition);
+  }
+};
+
+const showPosition = (position) => {
+  latitude.value = position.coords.latitude;
+  longitude.value = position.coords.longitude;
 };
 </script>
 
