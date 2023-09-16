@@ -1,11 +1,4 @@
 <template>
-  <div
-    style="z-index: 50; color: white; position: absolute; top: 50%; left: 50%"
-  >
-    "!!!!"
-    {{ longitude }}
-    {{ latitude }}
-  </div>
   <qrcode-stream @detect="onDetect" class="qr" @camera-on="onCameraOn">
     <div class="loadingIndicator" v-if="loading" />
     <header class="qrHeader">
@@ -90,6 +83,8 @@ const getLocation = () => {
 const showPosition = (position) => {
   latitude.value = position.coords.latitude;
   longitude.value = position.coords.longitude;
+
+  console.log(latitude, longitude);
 };
 </script>
 
