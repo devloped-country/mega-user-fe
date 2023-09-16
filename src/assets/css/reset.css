@@ -138,3 +138,10 @@ a:visited {
   box-sizing: border-box;
   -webkit-tap-highlight-color: transparent;
 }
+button {
+  padding: 0;
+  outline: none;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+}

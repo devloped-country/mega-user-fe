@@ -1,7 +1,7 @@
 <template>
-  <Modal :title="title">
+  <!-- <Modal :title="title">
     <div>여기서 모달마다 다른 기능을 구현하여 slot으로 넘겨줘요.</div>
-  </Modal>
+  </Modal> -->
 </template>
 
 <script setup>
@@ -54,8 +54,8 @@ const { mutate } = useMutation('/notice', {
 });
 
 onMounted(() => {
-  fetchNotice();
-  fetchNotices();
+  // fetchNotice();
+  // fetchNotices();
   // mutate({ id, pw });
 });
 </script>
