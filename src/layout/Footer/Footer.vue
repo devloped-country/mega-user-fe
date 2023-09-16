@@ -1,5 +1,5 @@
 <template>
-  <footer :class="classes.footer">
+  <footer :class="classes.footer" v-if="isFooterShowing">
     <ul :class="classes.menuList">
       <li
         :class="classes.menuItem"
@@ -15,18 +15,36 @@
 </template>
 
 <script setup>
-import { useRouter } from 'vue-router';
+import { ref, watch } from 'vue';
+import { useRoute, useRouter } from 'vue-router';
 import { useFooter } from '@/composables';
 
 const router = useRouter();
+const route = useRoute();
 const { info } = useFooter();
+const isFooterShowing = ref(true);
 
 const handleClickMenu = (route) => {
-  console.log(route);
   router.push({
     name: route,
   });
 };
+
+watch(
+  () => route.name,
+  () => {
+    if (
+      route.name === 'SuccessView' ||
+      route.name === 'FailView' ||
+      route.name === 'ReAuthView'
+    ) {
+      isFooterShowing.value = false;
+      return;
+    }
+
+    isFooterShowing.value = true;
+  }
+);
 </script>
 
 <style module="classes" scoped>

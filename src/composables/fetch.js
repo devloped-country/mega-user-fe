@@ -16,22 +16,26 @@ export function useFetch(url, config = {}) {
     isSuccess.value = false;
     isError.value = false;
 
-    const res = await api({
-      url,
-      headers: {
-        ...headers,
-        ...token,
-      },
-    });
+    try {
+      const res = await api({
+        url,
+        headers: {
+          ...headers,
+          ...token,
+        },
+      });
 
-    data.value = res.data;
-    onSuccess && onSuccess(res);
-    isSuccess.value = true;
+      data.value = res.data;
+      onSuccess && onSuccess(res);
+      isSuccess.value = true;
+    } catch (err) {
+      throw err;
+    }
   };
 
   const fetchData = async (url) => {
     try {
-      fetchTemplate(
+      await fetchTemplate(
         {
           Authorization: `Bearer ${localStorage.getItem('access')}`,
         },
@@ -40,7 +44,7 @@ export function useFetch(url, config = {}) {
     } catch (err) {
       if (err.status === 401) {
         try {
-          fetchTemplate({
+          await fetchTemplate({
             Authorization: `Bearer ${localStorage.getItem('refresh')}`,
           });
         } catch (err) {

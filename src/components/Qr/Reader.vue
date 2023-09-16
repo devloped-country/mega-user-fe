@@ -1,5 +1,4 @@
 <template>
-  <div style="color: white">{{ url }}</div>
   <qrcode-stream @detect="onDetect" class="qr" @camera-on="onCameraOn">
     <div class="loadingIndicator" v-if="loading" />
     <header class="qrHeader">
@@ -32,10 +31,25 @@ const url = ref('');
 
 const { data, fetchData } = useFetch('', {
   headers: {
-    id: 'kimub1204',
+    email: 'ub@naver.com',
   },
   onSuccess: (res) => {
-    console.log(res);
+    router.push({
+      name: 'SuccessView',
+    });
+  },
+  onError: (err) => {
+    const status = parseInt(err.response.data.status);
+
+    if (status === -1) {
+      router.push({
+        name: 'FailView',
+      });
+    } else if (status === -2) {
+      router.push({
+        name: 'ReAuthView',
+      });
+    }
   },
 });
 
@@ -48,10 +62,6 @@ const onDetect = (detectedCodes) => {
   // message.value = firstCode.rawValue;
   // 해당 url로 post 요청을 id와 pw를 담아서 보낸다.
   // 요청이 성공하면 router로 성공 페이지(출석이 완료되었습니다?)로 보낸다.
-
-  // router.push({
-  //   name: 'HomeView',
-  // });
 };
 
 const onCameraOn = () => {
