@@ -1,4 +1,19 @@
 <template>
+  <button
+    type="button"
+    @click="btnClick"
+    style="position: absolute; top: 0; z-index: 10; background-color: white"
+  >
+    버튼임당
+  </button>
+  <div
+    if="isShowing"
+    style="color: wheat; position: absolute; top: 20; z-index: 5"
+  >
+    {{ longitude }}
+    {{ latitude }}
+  </div>
+
   <qrcode-stream @detect="onDetect" class="qr" @camera-on="onCameraOn">
     <div class="loadingIndicator" v-if="loading" />
     <header class="qrHeader">
@@ -30,6 +45,7 @@ const loading = ref(true);
 const latitude = ref();
 const longitude = ref();
 const url = ref('');
+const isShowing = ref(false);
 
 const { data, fetchData } = useFetch('', {
   headers: {
@@ -70,9 +86,10 @@ const onCameraOn = () => {
   loading.value = false;
 };
 
-onMounted(() => {
+const btnClick = () => {
+  isShowing.value = true;
   getLocation();
-});
+};
 
 const getLocation = () => {
   if (navigator.geolocation) {
