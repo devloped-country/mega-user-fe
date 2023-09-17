@@ -2,7 +2,13 @@
   <button
     type="button"
     @click="btnClick"
-    style="position: absolute; top: 0; z-index: 10; background-color: white"
+    style="
+      position: absolute;
+      top: 0;
+      z-index: 10;
+      background-color: white;
+      padding: 8px 16px;
+    "
   >
     버튼임당
   </button>
@@ -16,9 +22,7 @@
 
   <qrcode-stream @detect="onDetect" class="qr" @camera-on="onCameraOn">
     <div class="loadingIndicator" v-if="loading" />
-    <header class="qrHeader">
-      <h2 class="qrTitle" v-if="!loading">QR 코드 찍고 출석하세요!</h2>
-    </header>
+    <header class="qrHeader" />
     <section class="backdrop">
       <div class="header" />
       <div class="leftSide" />
@@ -27,6 +31,7 @@
       <div class="footer" />
     </section>
     <footer class="qrFooter">
+      <h2 class="qrTitle" v-if="!loading">QR 코드 찍고 출석하세요!</h2>
       <p class="qrDesc" v-if="!loading">
         강사님이 알려주신 QR코드를 인식해주세요.
       </p>

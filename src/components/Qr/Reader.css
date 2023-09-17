@@ -19,9 +19,11 @@
   display: grid;
   grid-template-areas:
     'header header header header header'
-    'header header header header header'
     'leftSide main main main rightSide'
     'leftSide main main main rightSide'
+    'leftSide main main main rightSide'
+    'leftSide main main main rightSide'
+    'footer footer footer footer footer'
     'footer footer footer footer footer'
     'footer footer footer footer footer';
   width: 100%;
@@ -39,15 +41,9 @@
   z-index: 10000;
 }
 
-.qr .qrHeader .qrTitle {
-  color: var(--white-color);
-  font-size: var(--extra-bold-font-size);
-  font-weight: var(--semi-bold-font-weight);
-}
-
 .qr .qrFooter {
   position: absolute;
-  bottom: 20%;
+  bottom: 16%;
   left: 50%;
   width: 100%;
   text-align: center;
@@ -55,8 +51,15 @@
   z-index: 10000;
 }
 
-.qr .qrFooter {
+.qr .qrFooter .qrTitle {
   color: var(--white-color);
+  font-size: var(--extra-bold-font-size);
+  font-weight: var(--semi-bold-font-weight);
+}
+
+.qr .qrFooter .qrDesc {
+  margin-top: 24px;
+  color: var(--gray-color-300);
   font-size: var(--light-font-size);
   font-weight: var(--semi-bold-font-weight);
 }
