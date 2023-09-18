@@ -19,7 +19,7 @@ export function useFooter() {
     {
       img: qrImg,
       title: 'QR',
-      route: 'QrView',
+      route: 'QrReaderView',
     },
     {
       img: curriculumImg,
