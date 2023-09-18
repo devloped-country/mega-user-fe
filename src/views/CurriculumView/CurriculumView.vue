@@ -35,7 +35,7 @@
                   {{ curriculum.time }}h
                 </td>
                 <td :rowspan="curriculum.detailSubjectDTOList.length">
-                  {{ curriculum.startDate }} ~ {{ curriculum.endDate }}
+                  {{ curriculum.startDateString }} <br>~<br> {{ curriculum.endDateString }}
                 </td>
               </template>
               
