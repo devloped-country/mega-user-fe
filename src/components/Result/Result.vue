@@ -17,7 +17,7 @@ import { useRouter } from 'vue-router';
 const { title, desc, img, route } = defineProps({
   title: String,
   desc: String,
-  img: Object,
+  img: String,
   route: String,
 });
 
