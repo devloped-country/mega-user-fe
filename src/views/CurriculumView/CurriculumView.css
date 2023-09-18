@@ -10,7 +10,7 @@
 }
 
 .curriculum-table {
-  width: 200%; /* 컨테이너보다 넓게 설정하여 가로 스크롤을 강제합니다. */
+  width: 200%; /* 컨테이너보다 넓게 설정하여 가로 스크롤을 강제 */
   border-collapse: collapse;
 }
 
@@ -19,7 +19,7 @@
   position: sticky;
   top: 0;
   z-index: 1;
-  border: none; /* 이 부분이 추가됨 */
+  border: none; 
 }
 
 .col-index {
@@ -46,4 +46,8 @@
   border: 1px solid black;
   padding: 8px;
   text-align: center;
+}
+
+.curriculum-table td {
+  vertical-align: middle;
 }

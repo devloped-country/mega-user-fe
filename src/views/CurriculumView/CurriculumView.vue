@@ -1,36 +1,49 @@
 <template>
   <div class="CurriculumWrapper">
     <div class="table-container">
-    <table class="curriculum-table">
-      
-      <thead>
-        <tr>
-          <th class="col-index">순번</th>
-          <th class="col-subject">교과목명</th>
-          <th class="col-detail">상세교과내용</th>
-          <th class="col-time">시간</th>
-          <th class="col-period">기간</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr v-for="(curriculum, index) in curriculumData" :key="index">
-          <td>{{ index + 1 }}</td>
-          <td>{{ curriculum.subject }}</td>
-          <td>
-            <ul>
-              <li v-for="detail in curriculum.detailSubjectDTOList" :key="detail.id">
-                {{ detail.content }}
-              </li>
-            </ul>
-          </td>
-          <td>{{ curriculum.time }}</td>
-          <td>{{ curriculum.startDate }} ~ {{ curriculum.endDate }}</td>
-        </tr>
-      </tbody>
-      
-    </table>
-  </div>
+      <table class="curriculum-table">
+        <thead>
+          <tr>
+            <th class="col-index">순번</th>
+            <th class="col-subject">교과목명</th>
+            <th class="col-detail">상세교과내용</th>
+            <th class="col-time">시간</th>
+            <th class="col-period">기간</th>
+          </tr>
+        </thead>
 
+        <tbody>
+          <template v-for="(curriculum, index1) in curriculumData" :key="index1">
+            <tr v-for="(detail, index2) in curriculum.detailSubjectDTOList" :key="index2">
+
+              <template v-if="index2 === 0"> 
+                <td :rowspan="curriculum.detailSubjectDTOList.length">
+                  {{ index1 + 1 }}
+                </td>
+                <td :rowspan="curriculum.detailSubjectDTOList.length">
+                  {{ curriculum.subject }}
+                </td>
+              </template>
+
+
+              <td class="col-detail">
+                {{ detail.content }}
+              </td>
+
+              <template v-if="index2 === 0"> 
+                <td :rowspan="curriculum.detailSubjectDTOList.length">
+                  {{ curriculum.time }}h
+                </td>
+                <td :rowspan="curriculum.detailSubjectDTOList.length">
+                  {{ curriculum.startDate }} ~ {{ curriculum.endDate }}
+                </td>
+              </template>
+              
+            </tr>
+          </template>
+        </tbody>
+      </table>
+    </div>
   </div>
 </template>
 
