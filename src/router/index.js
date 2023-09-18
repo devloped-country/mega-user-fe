@@ -7,6 +7,7 @@ import SuccessView from '@/views/SuccessView/SuccessView.vue';
 import FailView from '@/views/FailView/FailView.vue';
 import ReAuthView from '@/views/ReAuthView/ReAuthView.vue';
 
+
 import { createRouter, createWebHistory } from 'vue-router';
 
 const routes = [
