@@ -31,7 +31,7 @@
 }
 
 .col-detail {
-  width: 40%;
+  width: 60%;
 }
 
 .col-time {
@@ -39,7 +39,7 @@
 }
 
 .col-period {
-  min-width: 250px;
+  min-width: 150px;
 }
 
 .curriculum-table th, .curriculum-table td {

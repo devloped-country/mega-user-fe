@@ -1,14 +1,14 @@
 <template>
-  <div class="CurriculumWrapper">
-    <div class="table-container">
-      <table class="curriculum-table">
+  <div :class="classes.CurriculumWrapper">
+    <div :class="classes['table-container']">
+      <table :class="classes['curriculum-table']">
         <thead>
           <tr>
-            <th class="col-index">순번</th>
-            <th class="col-subject">교과목명</th>
-            <th class="col-detail">상세교과내용</th>
-            <th class="col-time">시간</th>
-            <th class="col-period">기간</th>
+            <th :class="classes['col-index']">순번</th>
+            <th :class="classes['col-subject']">교과목명</th>
+            <th :class="classes['col-detail']">상세교과내용</th>
+            <th :class="classes['col-time']">시간</th>
+            <th :class="classes['col-period']">기간</th>
           </tr>
         </thead>
 
@@ -17,24 +17,24 @@
             <tr v-for="(detail, index2) in curriculum.detailSubjectDTOList" :key="index2">
 
               <template v-if="index2 === 0"> 
-                <td :rowspan="curriculum.detailSubjectDTOList.length">
+                <td :rowspan="curriculum.detailSubjectDTOList.length" :class="classes['col-index']">
                   {{ index1 + 1 }}
                 </td>
-                <td :rowspan="curriculum.detailSubjectDTOList.length">
+                <td :rowspan="curriculum.detailSubjectDTOList.length" :class="classes['col-subject']">
                   {{ curriculum.subject }}
                 </td>
               </template>
 
 
-              <td class="col-detail">
+              <td :class="classes[col-detail]">
                 {{ detail.content }}
               </td>
 
               <template v-if="index2 === 0"> 
-                <td :rowspan="curriculum.detailSubjectDTOList.length">
+                <td :rowspan="curriculum.detailSubjectDTOList.length" :class="classes['col-time']">
                   {{ curriculum.time }}h
                 </td>
-                <td :rowspan="curriculum.detailSubjectDTOList.length">
+                <td :rowspan="curriculum.detailSubjectDTOList.length" :class="classes['col-period']">
                   {{ curriculum.startDateString }} <br>~<br> {{ curriculum.endDateString }}
                 </td>
               </template>
@@ -58,28 +58,14 @@ const test01 = "테스트01";
 
 const { data: curriculumData, fetchData: fetchCurriculum } = useFetch('/curriculum', {
   method: 'get',
-  onSucess: (res) => {
-    console.log('통신 성공!');
-    console.log(res);
-  },
-  onError: (res) => {
-    console.log('통신 실패!');
-    console.log(res);
-  },
 })
 
 onMounted(() => {
   fetchCurriculum();
-
 })
-
-onUpdated(() => {
-  console.log(curriculumData.value[0])
-})
-
 
 </script>
 
-<style scoped>
+<style module="classes" scoped>
 @import './CurriculumView.css';
 </style>
