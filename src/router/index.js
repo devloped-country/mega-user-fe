@@ -6,6 +6,7 @@ import NoticeView from '@/views/NoticeView/NoticeView.vue';
 import SuccessView from '@/views/SuccessView/SuccessView.vue';
 import FailView from '@/views/FailView/FailView.vue';
 import ReAuthView from '@/views/ReAuthView/ReAuthView.vue';
+import FAQView from '@/views/FAQView/FAQView.vue';
 
 
 import { createRouter, createWebHistory } from 'vue-router';
@@ -50,6 +51,11 @@ const routes = [
     path: '/reauth',
     component: ReAuthView,
     name: 'ReAuthView',
+  },
+  {
+    path: '/FAQ',
+    component: FAQView,
+    name: 'FAQView',
   },
 ];
 
