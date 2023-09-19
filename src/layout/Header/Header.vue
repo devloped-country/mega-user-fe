@@ -31,6 +31,8 @@ const getPageTitle = () => {
       return '';
     case 'ReAuthView':
       return '';
+    case 'FAQView':
+    return '자주 묻는 질문';
     default:
       return 'NotFound';
   }

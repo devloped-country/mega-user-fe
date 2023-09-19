@@ -11,7 +11,7 @@ export function useFetch(url, config = {}) {
 
   const { onSuccess, onError, headers } = config;
 
-  const fetchTemplate = async (token, url) => {
+  const fetchTemplate = async (token) => {
     isLoading.value = true;
     isSuccess.value = false;
     isError.value = false;
@@ -33,13 +33,12 @@ export function useFetch(url, config = {}) {
     }
   };
 
-  const fetchData = async (url) => {
+  const fetchData = async () => {
     try {
       await fetchTemplate(
         {
           Authorization: `Bearer ${localStorage.getItem('access')}`,
         },
-        url
       );
     } catch (err) {
       if (err.status === 401) {

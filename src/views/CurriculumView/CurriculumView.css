@@ -1,2 +1,53 @@
-.example {
+.CurriculumWrapper {
+  padding: 0 8px 8px;
+  height: calc(100vh - 190px);
+}
+
+.table-container {
+  max-height: calc(100vh - 150px);
+  max-width: 100%;
+  overflow: auto;
+}
+
+.curriculum-table {
+  width: 200%; /* 컨테이너보다 넓게 설정하여 가로 스크롤을 강제 */
+  border-collapse: collapse;
+}
+
+.curriculum-table thead th {
+  background: #f2f2f2;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  border: none; 
+}
+
+.col-index {
+  width: 10%;
+}
+
+.col-subject {
+  width: 30%;
+}
+
+.col-detail {
+  width: 60%;
+}
+
+.col-time {
+  width: 15%;
+}
+
+.col-period {
+  min-width: 150px;
+}
+
+.curriculum-table th, .curriculum-table td {
+  border: 1px solid black;
+  padding: 8px;
+  text-align: center;
+}
+
+.curriculum-table td {
+  vertical-align: middle;
 }
