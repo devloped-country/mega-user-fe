@@ -1,15 +1,24 @@
 <template>
   <ul :class="classes.dateList">
     <li :class="classes.date" v-for="_ in firstDay"></li>
-    <li :class="classes.date" v-for="date in lastDate">
+    <template v-for="homeInfo in homeData">
+      <li :class="classes.date">
+        <!-- <p>{{ new Date(homeInfo.startDate) }}</p> -->
+        <!-- <p>{{ new Date(homeInfo.startDate).getDay() }}</p> -->
+        <div :class="classes.attendancePin">{{ homeInfo.stat }}</div>
+      </li>
+      <li v-if="new Date(homeInfo.startDate).getDay() === 5"></li>
+      <li v-if="new Date(homeInfo.startDate).getDay() === 5"></li>
+    </template>
+    <!-- <li :class="classes.date" v-for="date in lastDate">
       <p>{{ date }}</p>
       <div :class="classes.attendancePin" />
-    </li>
+    </li> -->
   </ul>
 </template>
 
 <script setup>
-defineProps({
+const props = defineProps({
   currDate: {
     type: Object,
   },
@@ -18,6 +27,9 @@ defineProps({
   },
   lastDate: {
     type: Number,
+  },
+  homeData: {
+    type: Object,
   },
 });
 </script>

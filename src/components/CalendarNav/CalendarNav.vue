@@ -42,7 +42,7 @@ const handleLeftArrowBtnClick = () => {
 };
 
 const handleRightArrowBtnClick = () => {
-  if (props.currDate.month >= 12) {
+  if (props.currDate.month >= new Date().getMonth() + 1) {
     return;
   }
 

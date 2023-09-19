@@ -1,6 +1,5 @@
 <template>
   <section v-if="homeData" :class="classes.calendarWrapper">
-    {{ homeData }}
     <header :class="classes.calendarHeader">
       <h2 :class="classes.calendarTitle">캘린더</h2>
       <ul :class="classes.calendarPinList">
@@ -25,6 +24,7 @@
     </ul>
     <Dates
       :currDate="currDate"
+      :homeData="homeData"
       :firstDay="firstDay.getDay()"
       :lastDate="lastDay.getDate()"
     />
@@ -32,50 +32,34 @@
 </template>
 
 <script setup>
-import { ref, computed, onMounted } from 'vue';
+import { computed, defineProps } from 'vue';
 import Dates from '@/components/Dates/Dates.vue';
 import CalendarNav from '@/components/CalendarNav/CalendarNav.vue';
-import { useFetch } from '@/composables';
 
-const { data: homeData, fetchData: fetchHomeData } = useFetch('/home', {
-  headers: {
-    userName: 'asdfsadf',
+const props = defineProps({
+  homeData: {
+    type: Array,
   },
-  onSuccess: (res) => {
-    console.log('통신 성공!');
-    console.log(res);
+  currDate: {
+    type: Object,
   },
-  onError: (res) => {
-    console.log('통신 실패!');
-    console.log(res);
-  },
-});
-
-const currDate = ref({
-  year: new Date().getFullYear(),
-  month: new Date().getMonth() + 1,
-  date: new Date().getDate(),
 });
 
 const firstDay = computed(
-  () => new Date(currDate.value.year, currDate.value.month - 1, 1)
+  () => new Date(props.currDate.year, props.currDate.month - 1, 1)
 );
 
 const lastDay = computed(
-  () => new Date(currDate.value.year, currDate.value.month, 0)
+  () => new Date(props.currDate.year, props.currDate.month, 0)
 );
 
 const increaseMonth = () => {
-  currDate.value.month = currDate.value.month + 1;
+  props.currDate.month = props.currDate.month + 1;
 };
 
 const decreaseMonth = () => {
-  currDate.value.month = currDate.value.month - 1;
+  props.currDate.month = props.currDate.month - 1;
 };
-
-onMounted(() => {
-  fetchHomeData();
-});
 </script>
 
 <style module="classes" scoped>
