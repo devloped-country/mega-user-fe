@@ -1,7 +1,5 @@
 <template>
-  <!-- <Modal :title="title">
-    <div>여기서 모달마다 다른 기능을 구현하여 slot으로 넘겨줘요.</div>
-  </Modal> -->
+  <Calendar />
 </template>
 
 <script setup>
@@ -9,6 +7,7 @@ import { onMounted, ref } from 'vue';
 import { useRouter } from 'vue-router';
 import { useFetch, useFetchs, useMutation } from '@/composables';
 import Modal from '@/teleport/Modal/Modal.vue';
+import Calendar from '@/components/Calendar/Calendar.vue';
 
 const id = ref('');
 const pw = ref('');
