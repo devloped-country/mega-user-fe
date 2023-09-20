@@ -36,16 +36,36 @@
 
 
   <div v-if="showSuccessModal">
+    <!-- <div>
+      [모달창임]
+      사용 가능한 email입니다.
+      <button @click="showSuccessModal = false">확인</button>
+    </div> -->
     <Modal title="사용 가능한 email입니다.">
       <button @click="showSuccessModal = false">확인</button>
     </Modal>
   </div>
 
   <div v-if="showFailModal">
+    <!-- <div>
+      [모달창임]
+      중복된 email입니다. 다른 email을 사용하세요.
+      <button @click="showFailModal = false">확인</button>
+    </div> -->
     <Modal title="중복된 email입니다. 다른 email을 사용하세요.">
       <button @click="showFailModal = false">확인</button>
     </Modal>
   </div>
+
+  <!-- <Modal title="입력이 누락된 값이 있습니다.">
+  <div v-if="showMissingInputModal">
+    <div>
+      [모달창임]
+      입력이 누락된 값이 있습니다.
+      <button @click="showMissingInputModal = false">확인</button>
+    </div>
+  </div>
+</Modal> -->
 
   <div v-if="showMissingInputModal">
     <Modal title="입력이 누락된 값이 있습니다.">
@@ -108,12 +128,12 @@ const validatePhone = () => {
   isPhoneValid.value = phoneRegex.test(phone.value);
 };
 
-// 비밀번호 일치 여부 검사함.
+// 비밀번호 일치 여부 검사 함수
 const checkPasswordMatch = () => {
   isPasswordMatch.value = password.value === confirmPassword.value;
 };
 
-// 이메일 중복 검사 관련
+// 이메일 중복 검사
 const { mutate: mutateEmailCheck } = useMutation('/userCheck', {
   method: 'post',
   onSuccess: (res) => {
@@ -132,7 +152,7 @@ const emailCheck = () => {
   mutateEmailCheck(param);
 };
 
-// 회원 가입 관련
+// 회원 가입
 const { mutate: mutateRegister } = useMutation('/join', {
   method: 'post'
 });
