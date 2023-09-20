@@ -1,12 +1,23 @@
 <template>
-  <butt
-  <Calendar :homeData="homeData" :currDate="currDate" />
+  <section :class="classes.wrapper">
+    <HomeProfile :profileData="profileData" />
+    <HomeNotice :noticeData="noticeData" />
+    <HomeCurriculum :curriculumData="curriculumData" />
+    <Calendar
+      :attendanceData="attendanceData"
+      :currDate="currDate"
+      :isAttendanceLoading="isAttendanceLoading"
+    />
+  </section>
 </template>
 
 <script setup>
-import { ref, watchEffect } from 'vue';
+import { ref, watchEffect, onMounted } from 'vue';
 import { useFetch } from '@/composables';
 import Calendar from '@/components/Calendar/Calendar.vue';
+import HomeProfile from '@/components/HomeProfile/HomeProfile.vue';
+import HomeNotice from '@/components/HomeNotice/HomeNotice.vue';
+import HomeCurriculum from '@/components/HomeCurriculum/HomeCurriculum.vue';
 
 const currDate = ref({
   year: new Date().getFullYear(),
@@ -14,18 +25,38 @@ const currDate = ref({
   date: new Date().getDate(),
 });
 
-const { data: homeData, fetchData: fetchHomeData } = useFetch('/home');
+const {
+  isLoading: isAttendanceLoading,
+  data: attendanceData,
+  fetchData: fetchAttendanceData,
+} = useFetch('/home/attendance');
 
-// watchEffect(() => {
-//   // console.log(homeData.value);
-//   fetchHomeData({
-//     name: 'ghjkg',
-//     year: currDate.value.year,
-//     month: currDate.value.month,
-//   });
-// });
+const { data: curriculumData, fetchData: fetchCurriculumData } =
+  useFetch('/home/curriculum');
+
+const { data: noticeData, fetchData: fetchNoticeData } =
+  useFetch('/home/notice');
+
+const { data: profileData, fetchData: fetchProfileData } =
+  useFetch('/home/profile');
+
+watchEffect(() => {
+  fetchAttendanceData({
+    name: 'ghjkg',
+    year: currDate.value.year,
+    month: currDate.value.month,
+  });
+});
+
+onMounted(() => {
+  fetchCurriculumData();
+  fetchNoticeData();
+  fetchProfileData({
+    name: 'ghjkg',
+  });
+});
 </script>
 
-<style module="classes">
-/* @import './HomeView.css'; */
+<style module="classes" scoped>
+@import './HomeView.css';
 </style>

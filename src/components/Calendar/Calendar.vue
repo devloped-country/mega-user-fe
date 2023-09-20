@@ -1,15 +1,22 @@
 <template>
-  <section v-if="homeData" :class="classes.calendarWrapper">
+  <section v-if="attendanceData" :class="classes.calendarWrapper">
     <header :class="classes.calendarHeader">
       <h2 :class="classes.calendarTitle">캘린더</h2>
       <ul :class="classes.calendarPinList">
+        <li :class="[classes.calendarPinItem, classes.notAttendance]">
+          미출석
+        </li>
         <li :class="[classes.calendarPinItem, classes.attendance]">출석</li>
         <li :class="[classes.calendarPinItem, classes.late]">지각</li>
+        <li :class="[classes.calendarPinItem, classes.earlyLeave]">조퇴</li>
+        <li :class="[classes.calendarPinItem, classes.officialLeave]">공결</li>
         <li :class="[classes.calendarPinItem, classes.absent]">결석</li>
+        <li :class="[classes.calendarPinItem, classes.sickLeave]">병가</li>
       </ul>
     </header>
     <CalendarNav
       :currDate="currDate"
+      :attendanceData="attendanceData"
       @increaseMonth="increaseMonth"
       @decreaseMonth="decreaseMonth"
     />
@@ -24,34 +31,28 @@
     </ul>
     <Dates
       :currDate="currDate"
-      :homeData="homeData"
-      :firstDay="firstDay.getDay()"
-      :lastDate="lastDay.getDate()"
+      :attendanceData="attendanceData"
+      :isAttendanceLoading="isAttendanceLoading"
     />
   </section>
 </template>
 
 <script setup>
-import { computed, defineProps } from 'vue';
+import { defineProps } from 'vue';
 import Dates from '@/components/Dates/Dates.vue';
 import CalendarNav from '@/components/CalendarNav/CalendarNav.vue';
 
 const props = defineProps({
-  homeData: {
+  attendanceData: {
     type: Array,
   },
   currDate: {
     type: Object,
   },
+  isAttendanceLoading: {
+    type: Boolean,
+  },
 });
-
-const firstDay = computed(
-  () => new Date(props.currDate.year, props.currDate.month - 1, 1)
-);
-
-const lastDay = computed(
-  () => new Date(props.currDate.year, props.currDate.month, 0)
-);
 
 const increaseMonth = () => {
   props.currDate.month = props.currDate.month + 1;

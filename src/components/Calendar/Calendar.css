@@ -1,4 +1,5 @@
 .calendarWrapper {
+  margin-top: 24px;
   padding: 16px;
   border-radius: 3px;
   background-color: var(--white-color);
@@ -15,16 +16,33 @@
 
 .calendarPinList {
   display: flex;
-  gap: 12px;
+  justify-content: flex-end;
+  flex-basis: 200px;
+  gap: 6px;
 }
 
 .calendarPinItem {
+  max-width: 12px;
   font-size: 14px;
   font-weight: 600;
+  flex-basis: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  /* align-items: end; */
+}
+
+.notAttendance::after {
+  margin-top: 4px;
+  content: '';
+  display: inline-block;
+  padding: 6px;
+  border-radius: 100px;
+  background-color: var(--gray-color-200);
 }
 
 .attendance::after {
-  margin-left: 6px;
+  margin-top: 4px;
   content: '';
   display: inline-block;
   padding: 6px;
@@ -33,7 +51,7 @@
 }
 
 .late::after {
-  margin-left: 6px;
+  margin-top: 4px;
   content: '';
   display: inline-block;
   padding: 6px;
@@ -42,12 +60,39 @@
 }
 
 .absent::after {
-  margin-left: 6px;
+  margin-top: 4px;
   content: '';
   display: inline-block;
   padding: 6px;
   border-radius: 100px;
   background-color: var(--red-color);
+}
+
+.earlyLeave::after {
+  margin-top: 4px;
+  content: '';
+  display: inline-block;
+  padding: 6px;
+  border-radius: 100px;
+  background-color: var(--green-color);
+}
+
+.officialLeave::after {
+  margin-top: 4px;
+  content: '';
+  display: inline-block;
+  padding: 6px;
+  border-radius: 100px;
+  background-color: var(--orange-color);
+}
+
+.sickLeave::after {
+  margin-top: 4px;
+  content: '';
+  display: inline-block;
+  padding: 6px;
+  border-radius: 100px;
+  background-color: var(--pink-color);
 }
 
 .dayList {

@@ -13,6 +13,13 @@
   gap: 4px;
 }
 
+.notAttendancePin {
+  width: 12px;
+  height: 12px;
+  background-color: var(--gray-color-200);
+  border-radius: 100px;
+}
+
 .attendancePin {
   width: 12px;
   height: 12px;
@@ -31,5 +38,26 @@
   width: 12px;
   height: 12px;
   background-color: var(--red-color);
+  border-radius: 100px;
+}
+
+.earlyLeavePin {
+  width: 12px;
+  height: 12px;
+  background-color: var(--green-color);
+  border-radius: 100px;
+}
+
+.officialLeavePin {
+  width: 12px;
+  height: 12px;
+  background-color: var(--orange-color);
+  border-radius: 100px;
+}
+
+.sickPin {
+  width: 12px;
+  height: 12px;
+  background-color: var(--pink-color);
   border-radius: 100px;
 }
