@@ -1,36 +1,37 @@
 <template>
-  <div>
-
-    <template v-for="(data, index) in faqData" :key="index">
-      <div>
-        {{ data.title }}
-        <button @click="toggleContent(index)">
-          <img v-if="!showContent[index]" :src="downButton">
-          <img v-else :src="upButton">
-        </button>
-      </div>
-      <div v-if="showContent[index]">
-        {{ data.content }}
-      </div>
-    </template>
-        
-  </div>
+  <section :class="classes.wrapper">
+    <ul :class="classes.qaList">
+      <template v-for="({ title, content }, index) in faqData" :key="index">
+        <li :class="classes.qaItem">
+          <div :class="classes.qaQuestion">
+            {{ title }}
+            <button @click="toggleContent(index)">
+              <img v-if="!showContent[index]" :src="downButton" />
+              <img v-else :src="upButton" />
+            </button>
+          </div>
+          <div v-if="showContent[index]" :class="classes.qaAnswer">
+            {{ content }}
+          </div>
+        </li>
+      </template>
+    </ul>
+  </section>
 </template>
 
 <script setup>
 import { ref } from 'vue';
-import faqData from './FAQData';
-import upButton from '@/assets/images/angle-small-up.svg'
-import downButton from '@/assets/images/angle-small-down.svg'
+import faqData from './faqData';
+import upButton from '@/assets/images/angle-small-up.svg';
+import downButton from '@/assets/images/angle-small-down.svg';
 
 const showContent = ref([]);
 
 const toggleContent = (index) => {
   showContent.value[index] = !showContent.value[index];
-}
-
+};
 </script>
 
-<style scoped>
-
+<style module="classes" scoped>
+@import './FAQView.css';
 </style>

@@ -9,7 +9,6 @@ import ReAuthView from '@/views/ReAuthView/ReAuthView.vue';
 import FAQView from '@/views/FAQView/FAQView.vue';
 import JoinView from '@/views/JoinView/JoinView.vue';
 
-
 import { createRouter, createWebHistory } from 'vue-router';
 
 const routes = [
@@ -54,7 +53,7 @@ const routes = [
     name: 'ReAuthView',
   },
   {
-    path: '/FAQ',
+    path: '/faq',
     component: FAQView,
     name: 'FAQView',
   },

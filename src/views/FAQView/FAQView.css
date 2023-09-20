@@ -1,0 +1,36 @@
+.wrapper {
+  padding: 24px 0;
+}
+
+.qaList {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.qaItem {
+  border-bottom: 1px solid var(--gray-color-100);
+  padding: 16px 24px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.qaQuestion {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.qaAnswer {
+  margin-top: 16px;
+  padding: 16px;
+  font-size: 14px;
+  line-height: 150%;
+  border-radius: 3px;
+  background-color: var(--gray-color-100);
+}
