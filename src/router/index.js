@@ -1,54 +1,60 @@
-import HomeView from '@/views/HomeView/HomeView.vue';
-import QrReaderView from '@/views/QrReaderView/QrReaderView.vue';
-import MyPageView from '@/views/MyPageView/MyPageView.vue';
-import CurriculumView from '@/views/CurriculumView/CurriculumView.vue';
-import NoticeView from '@/views/NoticeView/NoticeView.vue';
-import SuccessView from '@/views/SuccessView/SuccessView.vue';
-import FailView from '@/views/FailView/FailView.vue';
-import ReAuthView from '@/views/ReAuthView/ReAuthView.vue';
+import HomeView from "@/views/HomeView/HomeView.vue";
+import QrReaderView from "@/views/QrReaderView/QrReaderView.vue";
+import MyPageView from "@/views/MyPageView/MyPageView.vue";
+import CurriculumView from "@/views/CurriculumView/CurriculumView.vue";
+import NoticeView from "@/views/NoticeView/NoticeView.vue";
+import SuccessView from "@/views/SuccessView/SuccessView.vue";
+import FailView from "@/views/FailView/FailView.vue";
+import ReAuthView from "@/views/ReAuthView/ReAuthView.vue";
+import NoticeDetailView from "@/views/NoticeDetailView/NoticeDetailView.vue";
 
-import { createRouter, createWebHistory } from 'vue-router';
+import { createRouter, createWebHistory } from "vue-router";
 
 const routes = [
   {
-    path: '/',
+    path: "/",
     component: HomeView,
-    name: 'HomeView',
+    name: "HomeView",
   },
   {
-    path: '/notice',
+    path: "/notice",
     component: NoticeView,
-    name: 'NoticeView',
+    name: "NoticeView",
   },
   {
-    path: '/qr',
+    path: "/noticeDetail",
+    component: NoticeDetailView,
+    name: "NoticeDetailView",
+  },
+  {
+    path: "/qr",
     component: QrReaderView,
-    name: 'QrReaderView',
+    name: "QrReaderView",
   },
   {
-    path: '/curriculum',
+    path: "/curriculum",
     component: CurriculumView,
-    name: 'CurriculumView',
+    name: "CurriculumView",
   },
   {
-    path: '/mypage',
+    path: "/mypage",
     component: MyPageView,
-    name: 'MyPageView',
+    name: "MyPageView",
   },
   {
-    path: '/success',
+    path: "/success",
     component: SuccessView,
-    name: 'SuccessView',
+    name: "SuccessView",
   },
   {
-    path: '/fail',
+    path: "/fail",
     component: FailView,
-    name: 'FailView',
+    name: "FailView",
   },
   {
-    path: '/reauth',
+    path: "/reauth",
     component: ReAuthView,
-    name: 'ReAuthView',
+    name: "ReAuthView",
   },
 ];
 

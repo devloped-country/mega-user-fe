@@ -5,7 +5,7 @@
 </template>
 
 <script setup>
-import Reader from "@/components/Notice/Notice.vue";
+import Reader from "@/components/NoticeDetail/NoticeDetail.vue";
 </script>
 
 <style module="classes" scoped>
