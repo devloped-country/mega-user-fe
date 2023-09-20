@@ -1,16 +1,29 @@
 <template>
-  <header :class="classes.header" v-if="isHeaderShowing">
-    <img :class="classes.logo" :src="logoImg" alt="로고" />
+  <header
+    :class="[classes.header, isHeaderLayout && classes.changeHeader]"
+    v-if="isHeaderShowing"
+  >
+    <img
+      v-if="isHeaderLayout"
+      :class="classes.backArrow"
+      :src="backArrow"
+      @click="handleBackMoveBtnClick"
+      alt="뒤로가기"
+    />
+    <img v-else :class="classes.logo" :src="logo" alt="로고" />
     <h1 :class="classes.title">{{ getPageTitle() }}</h1>
   </header>
 </template>
 
 <script setup>
 import { ref, watch } from 'vue';
-import logoImg from '@/assets/images/logo.svg';
+import logo from '@/assets/images/logo.svg';
+import backArrow from '@/assets/images/arrow-left.svg';
 import { useRoute } from 'vue-router';
+import { router } from '../../router';
 
 const route = useRoute();
+const isHeaderLayout = ref(false);
 const isHeaderShowing = ref(true);
 
 const getPageTitle = () => {
@@ -32,10 +45,25 @@ const getPageTitle = () => {
     case 'ReAuthView':
       return '';
     case 'FAQView':
-    return '자주 묻는 질문';
+      return '자주 묻는 질문';
     default:
       return 'NotFound';
   }
+};
+
+const changeLayout = () => {
+  switch (route.name) {
+    case 'FAQView':
+      isHeaderLayout.value = true;
+      break;
+    default:
+      isHeaderLayout.value = false;
+      break;
+  }
+};
+
+const handleBackMoveBtnClick = () => {
+  router.back();
 };
 
 watch(
@@ -49,8 +77,9 @@ watch(
       isHeaderShowing.value = false;
       return;
     }
-
     isHeaderShowing.value = true;
+
+    changeLayout();
   }
 );
 </script>
