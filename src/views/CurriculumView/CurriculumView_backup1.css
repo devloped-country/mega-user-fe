@@ -1,6 +1,7 @@
 .CurriculumWrapper {
-  padding: 0 8px 8px;
-  height: calc(100vh - 190px);
+  padding: 24px 0;
+  position: relative;
+  background-color: #f7f7f7; /* 배경색 변경 */
 }
 
 .table-container {
@@ -10,16 +11,16 @@
 }
 
 .curriculum-table {
-  width: 200%; /* 컨테이너보다 넓게 설정하여 가로 스크롤을 강제 */
+  width: 200%;
   border-collapse: collapse;
 }
 
 .curriculum-table thead th {
-  background: white;
+  background: #e0e0e0; /* 테이블 헤더 색상 조정 */
   position: sticky;
   top: 0;
   z-index: 1;
-  border: none; 
+  border: none;
 }
 
 .col-index {
@@ -43,20 +44,10 @@
 }
 
 .curriculum-table th, .curriculum-table td {
-  border: 1px solid black;
+  border: 1px solid #e0e0e0; /* 경계색 변경 */
   padding: 8px;
   text-align: center;
-}
-
-.curriculum-table td {
-  vertical-align: middle;
-}
-
-.curriculum-table th, .curriculum-table td {
-  border: 1px solid #c0c0c0; /* 여기서 회색으로 변경했습니다 */
-  padding: 8px;
-  text-align: center;
-  color: #333;
+  color: #333; /* 텍스트 색상 조정 */
 }
 
 .curriculum-table td {
