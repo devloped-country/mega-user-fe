@@ -6,33 +6,33 @@
 </template>
 
 <script setup>
-import { ref, watch } from 'vue';
-import logoImg from '@/assets/images/logo.svg';
-import { useRoute } from 'vue-router';
+import { ref, watch } from "vue";
+import logoImg from "@/assets/images/logo.svg";
+import { useRoute } from "vue-router";
 
 const route = useRoute();
 const isHeaderShowing = ref(true);
 
 const getPageTitle = () => {
   switch (route.name) {
-    case 'HomeView':
-      return '홈';
-    case 'NoticeView':
-      return '공지사항';
-    case 'QrView':
-      return 'QR';
-    case 'CurriculumView':
-      return '커리큘럼';
-    case 'MyPageView':
-      return '마이페이지';
-    case 'SuccessView':
-      return '';
-    case 'FailView':
-      return '';
-    case 'ReAuthView':
-      return '';
+    case "HomeView":
+      return "홈";
+    case "NoticeView":
+      return "공지사항";
+    case "QrView":
+      return "QR";
+    case "CurriculumView":
+      return "커리큘럼";
+    case "MyPageView":
+      return "마이페이지";
+    case "SuccessView":
+      return "";
+    case "FailView":
+      return "";
+    case "ReAuthView":
+      return "";
     default:
-      return 'NotFound';
+      return "NotFound";
   }
 };
 
@@ -40,9 +40,10 @@ watch(
   () => route.name,
   () => {
     if (
-      route.name === 'SuccessView' ||
-      route.name === 'FailView' ||
-      route.name === 'ReAuthView'
+      route.name === "SuccessView" ||
+      route.name === "FailView" ||
+      route.name === "ReAuthView" ||
+      route.name === "_idView"
     ) {
       isHeaderShowing.value = false;
       return;
@@ -54,5 +55,5 @@ watch(
 </script>
 
 <style module="classes" scoped>
-@import './Header.css';
+@import "./Header.css";
 </style>

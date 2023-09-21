@@ -5,7 +5,12 @@
 </template>
 
 <script setup>
-import Reader from "@/components/NoticeDetail/NoticeDetail.vue";
+import Reader from "@/components/Notice/_id.vue";
+// import { useRouter } from "vue-router";
+
+// const router = useRouter();
+
+// console.log(router.params.id);
 </script>
 
 <style module="classes" scoped>

@@ -6,7 +6,7 @@ import NoticeView from "@/views/NoticeView/NoticeView.vue";
 import SuccessView from "@/views/SuccessView/SuccessView.vue";
 import FailView from "@/views/FailView/FailView.vue";
 import ReAuthView from "@/views/ReAuthView/ReAuthView.vue";
-import NoticeDetailView from "@/views/NoticeDetailView/NoticeDetailView.vue";
+import _idView from "@/views/NoticeView/_idView.vue";
 
 import { createRouter, createWebHistory } from "vue-router";
 
@@ -22,9 +22,9 @@ const routes = [
     name: "NoticeView",
   },
   {
-    path: "/noticeDetail",
-    component: NoticeDetailView,
-    name: "NoticeDetailView",
+    path: "/noticeDetail/:id",
+    component: _idView,
+    name: "_idView",
   },
   {
     path: "/qr",
