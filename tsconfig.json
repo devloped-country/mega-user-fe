@@ -1,0 +1,7 @@
+{
+  "compilerOptions": {
+    "types": ["node", "@types/crypto-js"]
+    // 나머지 설정...
+  }
+  // 나머지 설정...
+}

@@ -24,6 +24,9 @@
   position: relative;
   margin-top: 48px;
   width: 100%;
+}
+
+.form {
   display: flex;
   flex-direction: column;
   gap: 12px;

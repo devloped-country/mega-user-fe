@@ -12,14 +12,16 @@
           <p>
             {{ val }}
           </p>
-          <template
+          <!-- 주말만 핀 빼는 로직 -->
+          <!-- <template
             v-if="
               new Date(currDate.year, currDate.month - 1, val).getDay() !== 6 &&
               new Date(currDate.year, currDate.month - 1, val).getDay() !== 0
             "
           >
             <div :class="classes.notAttendancePin" />
-          </template>
+          </template> -->
+          <div :class="classes.notAttendancePin" />
         </li>
       </template>
     </ul>
@@ -66,6 +68,7 @@
             "
           >
             <p>{{ new Date(homeInfo.startDate).getDate() + 1 }}</p>
+            <div :class="classes.notAttendancePin" />
           </li>
           <li
             :class="classes.date"
@@ -80,6 +83,7 @@
             "
           >
             <p>{{ new Date(homeInfo.startDate).getDate() + 2 }}</p>
+            <div :class="classes.notAttendancePin" />
           </li>
         </template>
         <li

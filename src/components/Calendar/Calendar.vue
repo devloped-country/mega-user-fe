@@ -37,7 +37,6 @@
 </template>
 
 <script setup>
-import { defineProps } from 'vue';
 import Dates from '@/components/Dates/Dates.vue';
 import CalendarNav from '@/components/CalendarNav/CalendarNav.vue';
 

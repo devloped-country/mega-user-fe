@@ -1,17 +1,4 @@
 <template>
-  <button
-    type="button"
-    @click="btnClick"
-    style="
-      position: absolute;
-      top: 0;
-      z-index: 10;
-      background-color: white;
-      padding: 8px 16px;
-    "
-  >
-    버튼임당
-  </button>
   <div
     if="isShowing"
     style="color: wheat; position: absolute; top: 20; z-index: 5"
@@ -77,9 +64,12 @@ const { data, fetchData } = useFetch('', {
 });
 
 const onDetect = (detectedCodes) => {
+  calcUserPosition();
+
   const [qrCode] = detectedCodes;
   url.value = qrCode.rawValue;
   const [_, qr] = url.value.split('=');
+
   fetchData('/qr/auth?qr='.concat(qr));
   // qrCode.rawValue가 내가 보낸 url이면
   // message.value = firstCode.rawValue;
@@ -91,10 +81,10 @@ const onCameraOn = () => {
   loading.value = false;
 };
 
-const btnClick = () => {
+onMounted(() => {
   isShowing.value = true;
   getLocation();
-};
+});
 
 const getLocation = () => {
   if (navigator.geolocation) {
@@ -106,7 +96,18 @@ const showPosition = (position) => {
   latitude.value = position.coords.latitude;
   longitude.value = position.coords.longitude;
 
-  console.log(latitude, longitude);
+  console.log(latitude.value, longitude.value);
+};
+
+const calcUserPosition = () => {
+  if (
+    (latitude.value < 35.172593 && latitude.value > 35.173093) ||
+    (longitude.value < 129.1303 && longitude > 129.1311)
+  ) {
+    router.push({
+      name: 'PositionAuthView',
+    });
+  }
 };
 </script>
 
