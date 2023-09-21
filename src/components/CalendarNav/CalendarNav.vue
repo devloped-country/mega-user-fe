@@ -30,9 +30,6 @@ const props = defineProps({
   currDate: {
     type: Object,
   },
-  attendanceData: {
-    type: Object,
-  },
 });
 const emit = defineEmits();
 

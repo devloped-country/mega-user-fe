@@ -70,6 +70,7 @@ watch(
   () => route.name,
   () => {
     if (
+      route.name === 'LoginView' ||
       route.name === 'SuccessView' ||
       route.name === 'FailView' ||
       route.name === 'ReAuthView'

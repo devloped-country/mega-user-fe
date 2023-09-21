@@ -1,5 +1,5 @@
 <template>
-  <section v-if="attendanceData" :class="classes.calendarWrapper">
+  <section :class="classes.calendarWrapper">
     <header :class="classes.calendarHeader">
       <h2 :class="classes.calendarTitle">캘린더</h2>
       <ul :class="classes.calendarPinList">
@@ -16,7 +16,6 @@
     </header>
     <CalendarNav
       :currDate="currDate"
-      :attendanceData="attendanceData"
       @increaseMonth="increaseMonth"
       @decreaseMonth="decreaseMonth"
     />

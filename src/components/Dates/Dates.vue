@@ -1,5 +1,7 @@
 <template>
-  <template v-if="isAttendanceLoading"></template>
+  <section v-if="isAttendanceLoading" :class="classes.attendanceLoadingWrapper">
+    <VueSpinner size="40" />
+  </section>
   <template v-else>
     <ul :class="classes.dateList" v-if="attendanceData.status === '-1'">
       <li :class="classes.date" v-for="_ in firstDay"></li>

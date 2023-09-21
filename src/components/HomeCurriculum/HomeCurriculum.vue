@@ -1,7 +1,10 @@
 <template>
   <section :class="classes.wrapper">
     <h2 :class="classes.title">커리큘럼</h2>
-    <ul :class="classes.list" @click="handleCurriculumClick">
+    <div v-if="isCurriculumLoading" :class="classes.curriculumLoadingWrapper">
+      <VueSpinner size="40" />
+    </div>
+    <ul v-else :class="classes.list" @click="handleCurriculumClick">
       <li :class="classes.item" v-for="curriculum in curriculumData">
         <h3 :class="classes.itemTitle">{{ curriculum.subject }}</h3>
         <p :class="classes.date">
@@ -21,6 +24,9 @@ import { DateFormat } from '@/util/format';
 defineProps({
   curriculumData: {
     type: Object,
+  },
+  isCurriculumLoading: {
+    type: Boolean,
   },
 });
 const router = useRouter();

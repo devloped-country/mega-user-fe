@@ -1,8 +1,14 @@
 <template>
   <section :class="classes.wrapper">
-    <HomeProfile :profileData="profileData" />
-    <HomeNotice :noticeData="noticeData" />
-    <HomeCurriculum :curriculumData="curriculumData" />
+    <HomeProfile
+      :profileData="profileData"
+      :isProfileLoading="isProfileLoading"
+    />
+    <HomeNotice :noticeData="noticeData" :isNoticeLoading="isNoticeLoading" />
+    <HomeCurriculum
+      :curriculumData="curriculumData"
+      :isCurriculumLoading="isCurriculumLoading"
+    />
     <Calendar
       :attendanceData="attendanceData"
       :currDate="currDate"
@@ -31,14 +37,23 @@ const {
   fetchData: fetchAttendanceData,
 } = useFetch('/home/attendance');
 
-const { data: curriculumData, fetchData: fetchCurriculumData } =
-  useFetch('/home/curriculum');
+const {
+  isLoading: isCurriculumLoading,
+  data: curriculumData,
+  fetchData: fetchCurriculumData,
+} = useFetch('/home/curriculum');
 
-const { data: noticeData, fetchData: fetchNoticeData } =
-  useFetch('/home/notice');
+const {
+  isLoading: isNoticeLoading,
+  data: noticeData,
+  fetchData: fetchNoticeData,
+} = useFetch('/home/notice');
 
-const { data: profileData, fetchData: fetchProfileData } =
-  useFetch('/home/profile');
+const {
+  isLoading: isProfileLoading,
+  data: profileData,
+  fetchData: fetchProfileData,
+} = useFetch('/home/profile');
 
 watchEffect(() => {
   fetchAttendanceData({

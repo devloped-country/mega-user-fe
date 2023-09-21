@@ -61,3 +61,10 @@
   background-color: var(--pink-color);
   border-radius: 100px;
 }
+
+.attendanceLoadingWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 140px 0;
+}

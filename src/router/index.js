@@ -1,3 +1,4 @@
+import LoginView from '@/views/LoginView/LoginView.vue';
 import HomeView from '@/views/HomeView/HomeView.vue';
 import QrReaderView from '@/views/QrReaderView/QrReaderView.vue';
 import MyPageView from '@/views/MyPageView/MyPageView.vue';
@@ -13,6 +14,11 @@ import { createRouter, createWebHistory } from 'vue-router';
 const routes = [
   {
     path: '/',
+    component: LoginView,
+    name: 'LoginView',
+  },
+  {
+    path: '/home',
     component: HomeView,
     name: 'HomeView',
   },

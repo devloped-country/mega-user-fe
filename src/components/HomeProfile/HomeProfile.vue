@@ -1,10 +1,15 @@
 <template>
   <section :class="classes.wrapper">
     <h2 :class="classes.title">프로필</h2>
-    <div :class="classes.profileWrapper">
+    <div v-if="isProfileLoading" :class="classes.profileLoadingWrapper">
+      <VueSpinner size="40" />
+    </div>
+    <div v-else :class="classes.profileWrapper">
       <img :src="userImg" alt="사진" :class="classes.userImg" />
       <div>
-        <h3 :class="classes.name">김유범</h3>
+        <h3 :class="classes.name">
+          김유범 <span :class="classes.role">Developer</span>
+        </h3>
         <ul :class="classes.list">
           <li :class="classes.item" v-for="(profile, index) in profileData">
             {{ getProfileColumnTitle(index) }} {{ profile.attendanceCount }}
@@ -21,6 +26,9 @@ import userImg from '@/assets/images/User-60.svg';
 defineProps({
   profileData: {
     type: Object,
+  },
+  isProfileLoading: {
+    type: Boolean,
   },
 });
 
