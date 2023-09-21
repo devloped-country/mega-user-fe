@@ -58,6 +58,12 @@
         <button @click="showMissingInputModal = false">확인</button>
       </Modal>
     </div>
+
+    <div v-if="showInvalidInputModal">
+      <Modal title="입력값을 확인하세요.">
+        <button @click="showInvalidInputModal = false">확인</button>
+      </Modal>
+    </div>
   </section>
 </template>
 
@@ -83,6 +89,7 @@ const isPhoneValid = ref(true);
 const showSuccessModal = ref(false);
 const showFailModal = ref(false);
 const showMissingInputModal = ref(false);
+const showInvalidInputModal = ref(false);
 
 // 이메일 검증
 const validateEmail = () => {
@@ -148,6 +155,11 @@ const registerUser = () => {
   if (!email.value || !password.value || !confirmPassword.value || !name.value || !phone.value) {
     // 필수 입력 값이 누락되었다면 모달을 띄움
     showMissingInputModal.value = true;
+    return;
+  }
+  if (!isEmailValid.value || !isPasswordValid.value || !isPasswordMatch.value || !isPhoneValid.value) {
+     // 유효하지 않은 입력값이 있으면 모달을 띄움
+     showInvalidInputModal.value = true;
     return;
   }
 
