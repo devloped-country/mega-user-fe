@@ -1,3 +1,4 @@
+import LoginView from '@/views/LoginView/LoginView.vue';
 import HomeView from '@/views/HomeView/HomeView.vue';
 import QrReaderView from '@/views/QrReaderView/QrReaderView.vue';
 import MyPageView from '@/views/MyPageView/MyPageView.vue';
@@ -6,6 +7,7 @@ import NoticeView from '@/views/NoticeView/NoticeView.vue';
 import SuccessView from '@/views/SuccessView/SuccessView.vue';
 import FailView from '@/views/FailView/FailView.vue';
 import ReAuthView from '@/views/ReAuthView/ReAuthView.vue';
+import PositionAuthView from '@/views/PositionAuthView/PositionAuthView.vue';
 import FAQView from '@/views/FAQView/FAQView.vue';
 
 import { createRouter, createWebHistory } from 'vue-router';
@@ -13,6 +15,11 @@ import { createRouter, createWebHistory } from 'vue-router';
 const routes = [
   {
     path: '/',
+    component: LoginView,
+    name: 'LoginView',
+  },
+  {
+    path: '/home',
     component: HomeView,
     name: 'HomeView',
   },
@@ -50,6 +57,11 @@ const routes = [
     path: '/reauth',
     component: ReAuthView,
     name: 'ReAuthView',
+  },
+  {
+    path: '/positionauth',
+    component: PositionAuthView,
+    name: 'PositionAuthView',
   },
   {
     path: '/faq',

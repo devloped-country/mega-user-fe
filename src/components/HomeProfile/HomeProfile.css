@@ -1,0 +1,50 @@
+.wrapper {
+  border-radius: 10px;
+  background-color: var(--white-color);
+}
+
+.title {
+  padding: 16px;
+  font-weight: var(--semi-bold-font-weight);
+}
+
+.profileWrapper {
+  padding: 16px 16px 24px;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.userImg {
+  width: 72px;
+}
+
+.name {
+  font-size: 18px;
+  font-weight: var(--semi-bold-font-weight);
+}
+
+.list {
+  margin-top: 10px;
+  display: grid;
+  grid-template-rows: repeat(2, 1fr);
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px 16px;
+}
+
+.item {
+  font-size: 16px;
+}
+
+.role {
+  margin-left: 4px;
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--gray-color-200);
+}
+
+.profileLoadingWrapper {
+  padding: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

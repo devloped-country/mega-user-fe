@@ -11,7 +11,7 @@ export function useFetch(url, config = {}) {
 
   const { onSuccess, onError, headers } = config;
 
-  const fetchTemplate = async (token) => {
+  const fetchTemplate = async (token, params) => {
     isLoading.value = true;
     isSuccess.value = false;
     isError.value = false;
@@ -23,6 +23,7 @@ export function useFetch(url, config = {}) {
           ...headers,
           ...token,
         },
+        params,
       });
 
       data.value = res.data;
@@ -33,18 +34,21 @@ export function useFetch(url, config = {}) {
     }
   };
 
-  const fetchData = async () => {
+  const fetchData = async (params) => {
     try {
       await fetchTemplate(
         {
           Authorization: `Bearer ${localStorage.getItem('access')}`,
+          'Token-Kind': 'access',
         },
+        params
       );
     } catch (err) {
-      if (err.status === 401) {
+      if (err.response.status === 401) {
         try {
           await fetchTemplate({
             Authorization: `Bearer ${localStorage.getItem('refresh')}`,
+            'Token-Kind': 'refresh',
           });
         } catch (err) {
           throw err;
@@ -54,7 +58,7 @@ export function useFetch(url, config = {}) {
       isError.ref = true;
       onError && onError(err);
 
-      if (err.status === 401) {
+      if (err.response.status === 401) {
         return router.push({ name: LoginView });
       }
     } finally {
