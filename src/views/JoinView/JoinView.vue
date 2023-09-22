@@ -34,7 +34,7 @@
     </div>
 
     <button :class="classes['register-button']" @click="registerUser">회원 가입</button>
-    <button :class="classes['cancel-button']">취소</button>
+    <button :class="classes['cancel-button']" @click="goToMainPage">취소</button>
   </section>
 
   <div v-if="showSuccessModal">
@@ -66,6 +66,10 @@
 import { useMutation } from '@/composables';
 import { ref } from 'vue';
 import Modal from '@/teleport/Modal/Modal.vue';
+import { useRouter } from 'vue-router';
+
+const router = useRouter();
+
 
 // 데이터용
 const email = ref('');
@@ -79,6 +83,8 @@ const isEmailValid = ref(true);
 const isPasswordValid = ref(true);
 const isPasswordMatch = ref(true);
 const isPhoneValid = ref(true);
+
+const isEmailChecked = ref(false);
 
 // 모달용
 const showSuccessModal = ref(false);
@@ -119,7 +125,9 @@ const validatePhone = () => {
 
 // 비밀번호 일치 여부 검사함.
 const checkPasswordMatch = () => {
-  isPasswordMatch.value = password.value === confirmPassword.value;
+  if (!(confirmPassword.value == null)) {
+    isPasswordMatch.value = password.value === confirmPassword.value;
+  }
 };
 
 // 이메일 중복 검사 관련
@@ -130,15 +138,24 @@ const { mutate: mutateEmailCheck } = useMutation('/userCheck', {
       showSuccessModal.value = true;
     } else {
       showFailModal.value = true;
+      isEmailChecked = false;
     }
   }
 });
 
 const emailCheck = () => {
-  const param = {
+
+  if (email.value === '') {
+    return;
+  }
+
+  if (isEmailValid.value) {
+    const param = {
     email: email.value
   };
   mutateEmailCheck(param);
+  isEmailChecked.value = true;
+  }
 };
 
 // 회원 가입 관련
@@ -158,6 +175,10 @@ const registerUser = () => {
     return;
   }
 
+  if (!isEmailChecked.value) {
+    return;
+  }
+
   const param = {
     email: email.value,
     password: password.value,
@@ -166,7 +187,14 @@ const registerUser = () => {
     phone: phone.value
   };
   mutateRegister(param);
+
+  router.push("/");
 };
+
+const goToMainPage = () => {
+  router.push('/');
+};
+
 </script>
 
 <style module="classes" scoped>
