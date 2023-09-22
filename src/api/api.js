@@ -11,8 +11,9 @@ export const api = axios.create({
 api.interceptors.request.use(
   async function (config) {
     const loginUrl = 'http://localhost:3000/';
+    const joinUrl = 'http://localhost:3000/join';
 
-    if (location.href === loginUrl) {
+    if (location.href === loginUrl || location.href === joinUrl) {
       return config;
     }
 
