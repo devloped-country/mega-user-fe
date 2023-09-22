@@ -25,7 +25,6 @@
                 </td>
               </template>
 
-
               <td :class="classes[col-detail]">
                 {{ detail.content }}
               </td>
@@ -35,7 +34,7 @@
                   {{ curriculum.time }}h
                 </td>
                 <td :rowspan="curriculum.detailSubjectDTOList.length" :class="classes['col-period']">
-                  {{ curriculum.startDateString }} <br>~<br> {{ curriculum.endDateString }}
+                  {{ curriculum.startDateString }} ~ {{ curriculum.endDateString }}
                 </td>
               </template>
               
@@ -53,8 +52,6 @@ import { useRouter } from 'vue-router';
 import { useFetch, useFetchs, useMutation } from '@/composables';
 
 const router = useRouter();
-
-const test01 = "테스트01";
 
 const { data: curriculumData, fetchData: fetchCurriculum } = useFetch('/curriculum', {
   method: 'get',
