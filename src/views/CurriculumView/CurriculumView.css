@@ -1,5 +1,5 @@
 .CurriculumWrapper {
-  padding: 0 8px 8px;
+  padding: 0 0;
   height: calc(100vh - 190px);
 }
 
@@ -28,6 +28,8 @@
 
 .col-subject {
   width: 30%;
+  word-break: keep-all;
+  line-height: 150%;
 }
 
 .col-detail {
@@ -40,25 +42,30 @@
 
 .col-period {
   min-width: 150px;
-}
-
-.curriculum-table th, .curriculum-table td {
-  border: 1px solid black;
-  padding: 8px;
-  text-align: center;
+  word-break: keep-all;
+  line-height: 150%;
 }
 
 .curriculum-table td {
   vertical-align: middle;
 }
 
+.curriculum-table th {
+  font-weight: var(--bold-font-weight);
+}
+
 .curriculum-table th, .curriculum-table td {
-  border: 1px solid #c0c0c0; /* 여기서 회색으로 변경했습니다 */
+  border: 1px solid var(--gray-color-200);
   padding: 8px;
   text-align: center;
   color: #333;
 }
 
-.curriculum-table td {
-  vertical-align: middle;
+.curriculum-table tbody tr:first-child td {
+  border-top: 2px solid var(--black-color);
+}
+
+/* tbody의 마지막 행의 아래쪽 테두리를 검은색으로 설정 */
+.curriculum-table tbody tr:last-child {
+  border-bottom: 2px solid var(--black-color);
 }
