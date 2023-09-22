@@ -46,6 +46,8 @@ const getPageTitle = () => {
       return '';
     case 'FAQView':
       return '자주 묻는 질문';
+    case 'JoinView':
+      return '회원 가입';
     default:
       return 'NotFound';
   }
