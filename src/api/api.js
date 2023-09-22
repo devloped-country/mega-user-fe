@@ -7,3 +7,57 @@ export const api = axios.create({
     Accept: 'application/json',
   },
 });
+
+api.interceptors.request.use(
+  async function (config) {
+    const loginUrl = 'http://localhost:3000/';
+
+    if (location.href === loginUrl) {
+      return config;
+    }
+
+    if (!localStorage.getItem('access') || !localStorage.getItem('refresh')) {
+      localStorage.clear();
+      location.href = loginUrl;
+    }
+
+    try {
+      const res = await fetch('/api/auth', {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('access')}`,
+          'Token-Kind': 'access',
+        },
+      });
+
+      if (res.status === 401) {
+        throw new Error();
+      }
+
+      return config;
+    } catch (err) {
+      try {
+        const res = await fetch('/api/auth', {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem('refresh')}`,
+            'Token-Kind': 'refresh',
+          },
+        }).then((res) => res.json());
+
+        localStorage.setItem('access', res.access);
+        if (res.refresh) {
+          localStorage.setItem('refresh', res.refresh);
+        }
+
+        return config;
+      } catch (error) {
+        localStorage.clear();
+        location.href = loginUrl;
+      }
+    }
+
+    return config;
+  },
+  function (error) {
+    return Promise.reject(error);
+  }
+);
