@@ -44,7 +44,7 @@
 
 <script setup>
 import logo from '@/assets/images/logo.svg';
-import { ref, inject } from 'vue';
+import { ref, inject, onMounted } from 'vue';
 import { useMutation } from '@/composables';
 import { useRouter } from 'vue-router';
 import { Crypto } from '@/util/crypto';
@@ -101,6 +101,12 @@ const handleLoginBtnClick = () => {
 const handleJoinBtnClick = () => {
   // router.push({name: ''})
 };
+
+onMounted(() => {
+  if (localStorage.getItem('access') || localStorage.getItem('refresh')) {
+    router.push({ name: 'HomeView' });
+  }
+});
 </script>
 
 <style module="classes" scoped>
