@@ -5,60 +5,61 @@
     </div>
 
     <div :class="classes.inputContainer">
-      <input :class="classes.input" type="email" id="email" name="email" v-model="email" @input="validateEmail" required
-        placeholder="이메일 *">
-      <button @click="emailCheck">중복 확인</button><br>
+      <div :class="classes.emailContainer">
+        <input :class="classes.inputEmail" type="email" id="email" name="email" v-model="email" @input="validateEmail"
+          required placeholder="이메일 *">
+        <button :class="classes['emailCheck-button']" @click="emailCheck">중복 확인</button>
+      </div>
       <div :class="classes.red" v-if="!isEmailValid">이메일을 형식에 맞게 입력해 주세요</div>
       <div :class="classes.red" v-if="!email">이메일을 입력하세요</div>
-    
-    <input :class="classes.input" type="password" id="password" name="password" v-model="password"
-      @input="validatePassword" required placeholder="비밀번호 *">
-    <div :class="classes.red" v-if="!isPasswordValid">비밀번호: 8~16자의 영문 대/소문자, 숫자, 특수문자를 사용해 주세요.</div>
-    <div :class="classes.red" v-if="!password">비밀번호를 입력하세요</div>
 
-    <input :class="classes.input" type="password" id="confirmPassword" name="confirmPassword" v-model="confirmPassword"
-      @input="checkPasswordMatch" required placeholder="비밀번호 확인 *">
-    <div :class="classes.red" v-if="!isPasswordMatch">비밀번호가 일치하지 않아요</div>
-    <div :class="classes.red" v-if="!confirmPassword">비밀번호 확인을 입력하세요</div>
+      <input :class="classes.input" type="password" id="password" name="password" v-model="password"
+        @input="validatePassword" required placeholder="비밀번호 *">
+      <div :class="classes.red" v-if="!isPasswordValid">비밀번호: 8~16자의 영문 대/소문자, <br> 숫자, 특수문자를 사용해 주세요.</div>
+      <div :class="classes.red" v-if="!password">비밀번호를 입력하세요</div>
 
-    <input :class="classes.input" type="text" id="name_" name="name" v-model="name" required placeholder="이름 *">
-    <div :class="classes.red" v-if="!name">이름을 입력하세요</div>
+      <input :class="classes.input" type="password" id="confirmPassword" name="confirmPassword" v-model="confirmPassword"
+        @input="checkPasswordMatch" required placeholder="비밀번호 확인 *">
+      <div :class="classes.red" v-if="!isPasswordMatch">비밀번호가 일치하지 않아요</div>
+      <div :class="classes.red" v-if="!confirmPassword">비밀번호 확인을 입력하세요</div>
 
-    <input :class="classes.input" type="tel" id="phone" name="phone" v-model="phone" @input="validatePhone" required
-      placeholder="휴대폰번호*">
-    <div :class="classes.red" v-if="!isPhoneValid">휴대폰 번호를 확인하세요</div>
-    <div :class="classes.red" v-if="!phone">휴대폰 번호를 입력하세요</div>
+      <input :class="classes.input" type="text" id="name_" name="name" v-model="name" required placeholder="이름 *">
+      <div :class="classes.red" v-if="!name">이름을 입력하세요</div>
 
-  </div>
+      <input :class="classes.input" type="tel" id="phone" name="phone" v-model="phone" @input="validatePhone" required
+        placeholder="휴대폰번호*">
+      <div :class="classes.red" v-if="!isPhoneValid">휴대폰 번호를 확인하세요</div>
+      <div :class="classes.red" v-if="!phone">휴대폰 번호를 입력하세요</div>
+
+    </div>
 
     <button :class="classes['register-button']" @click="registerUser">회원 가입</button>
     <button :class="classes['cancel-button']">취소</button>
   </section>
 
-    <div v-if="showSuccessModal">
-      <Modal title="사용 가능한 email입니다.">
-        <button @click="showSuccessModal = false">확인</button>
-      </Modal>
-    </div>
+  <div v-if="showSuccessModal">
+    <Modal title="사용 가능한 email입니다.">
+      <button @click="showSuccessModal = false">확인</button>
+    </Modal>
+  </div>
 
-    <div v-if="showFailModal">
-      <Modal title="중복된 email입니다. 다른 email을 사용하세요.">
-        <button @click="showFailModal = false">확인</button>
-      </Modal>
-    </div>
+  <div v-if="showFailModal">
+    <Modal title="중복된 email입니다. 다른 email을 사용하세요.">
+      <button @click="showFailModal = false">확인</button>
+    </Modal>
+  </div>
 
-    <div v-if="showMissingInputModal">
-      <Modal title="입력이 누락된 값이 있습니다.">
-        <button @click="showMissingInputModal = false">확인</button>
-      </Modal>
-    </div>
+  <div v-if="showMissingInputModal">
+    <Modal title="입력이 누락된 값이 있습니다.">
+      <button :class="classes['register-button']" @click="showMissingInputModal = false">확인</button>
+    </Modal>
+  </div>
 
-    <div v-if="showInvalidInputModal">
-      <Modal title="입력값을 확인하세요.">
-        <button @click="showInvalidInputModal = false">확인</button>
-      </Modal>
-    </div>
-  
+  <div v-if="showInvalidInputModal">
+    <Modal title="입력값을 확인하세요.">
+      <button @click="showInvalidInputModal = false">확인</button>
+    </Modal>
+  </div>
 </template>
 
 <script setup>
@@ -168,4 +169,6 @@ const registerUser = () => {
 };
 </script>
 
-<style module="classes" scoped>@import './JoinView.css';</style>
+<style module="classes" scoped>
+@import './JoinView.css';
+</style>
