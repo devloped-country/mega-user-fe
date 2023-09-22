@@ -42,7 +42,7 @@ import { useFetch, useFetchs, useMutation } from "@/composables";
 const route = useRoute();
 const router = useRouter();
 
-console.log(route.params.id);
+// console.log(route.params.id);
 
 const { data, fetchData } = useFetch("/noticeDetail", {
   method: "get",
@@ -59,7 +59,7 @@ const { data, fetchData } = useFetch("/noticeDetail", {
   },
 });
 
-console.log(data);
+// console.log(data);
 
 const goNotice = () => {
   router.push({

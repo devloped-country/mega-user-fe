@@ -45,7 +45,7 @@ const { data: noticeList, fetchData } = useFetch("/notice", {
   },
 });
 
-console.log(noticeList);
+// console.log(noticeList);
 
 onMounted(() => {
   fetchData();

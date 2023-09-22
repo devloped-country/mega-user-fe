@@ -23,7 +23,7 @@ h2 {
 /* 바디 */
 
 .body-wrapper {
-  padding: 0px 24px 24px 24px;
+  padding: 0px 24px 97px 24px;
 }
 
 /* notice */
@@ -77,8 +77,6 @@ td {
 
 .title-bar {
   margin-top: 22px;
-  height: 72px;
-  border-bottom: 1px solid #cacaca;
 }
 
 .top-bar-row-1 {
@@ -86,16 +84,16 @@ td {
 }
 
 .top-bar-tag {
-  width: 40px;
   height: 14px;
   display: inline-flex;
   font-size: 12px;
   font-weight: 200;
-  border-right: 1px solid #cacaca;
   margin-right: 8px;
 }
 
 .top-bar-title {
+  padding-left: 8px;
+  border-left: 1px solid #cacaca;
   display: inline-flex;
   font-size: 12px;
   font-weight: 200;
@@ -111,8 +109,10 @@ td {
 }
 
 .notice-content {
-  padding: 10px 0 10px 0;
-  height: 294px;
+  margin-top: 16px;
+  border-top: 1px solid #cacaca;
+  line-height: 180%;
+  padding: 16px 0 10px 0;
   font-size: 10px;
   font-weight: 100;
 }
