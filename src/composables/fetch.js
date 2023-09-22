@@ -7,7 +7,6 @@ export function useFetch(url, config = {}) {
   const isLoading = ref(false);
   const isSuccess = ref(false);
   const isError = ref(false);
-  const router = useRouter();
 
   const { onSuccess, onError, headers } = config;
 

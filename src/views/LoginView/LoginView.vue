@@ -99,7 +99,7 @@ const handleLoginBtnClick = () => {
 };
 
 const handleJoinBtnClick = () => {
-  // router.push({name: ''})
+  router.push({ name: 'JoinView' });
 };
 
 onMounted(() => {
