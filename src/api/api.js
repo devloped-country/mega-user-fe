@@ -10,8 +10,8 @@ export const api = axios.create({
 
 api.interceptors.request.use(
   async function (config) {
-    const loginUrl = 'http://mega-user.vercel.app/';
-    const joinUrl = 'http://mega-user.vercel.app/join';
+    const loginUrl = 'https://mega-user.vercel.app';
+    const joinUrl = 'https://mega-user.vercel.app/join';
 
     if (location.href === loginUrl || location.href === joinUrl) {
       return config;
