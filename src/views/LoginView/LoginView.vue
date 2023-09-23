@@ -101,8 +101,7 @@ const handleLoginBtnClick = () => {
       email: auth.value.email,
       password: sha256(auth.value.password).toString(),
     })
-    .then((data) => {
-      console.log(data);
+    .then(({ data }) => {
       localStorage.setItem('access', data.accessToken);
       localStorage.setItem('refresh', data.refreshToken);
       router.push({ name: 'HomeView' });
