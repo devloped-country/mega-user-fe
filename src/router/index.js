@@ -7,17 +7,26 @@ import SuccessView from "@/views/SuccessView/SuccessView.vue";
 import FailView from "@/views/FailView/FailView.vue";
 import ReAuthView from "@/views/ReAuthView/ReAuthView.vue";
 import _idView from "@/views/NoticeView/_idView.vue";
+import LoginView from '@/views/LoginView/LoginView.vue';
+import PositionAuthView from '@/views/PositionAuthView/PositionAuthView.vue';
+import FAQView from '@/views/FAQView/FAQView.vue';
+import JoinView from '@/views/JoinView/JoinView.vue';
 
-import { createRouter, createWebHistory } from "vue-router";
+import { createRouter, createWebHistory } from 'vue-router';
 
 const routes = [
   {
-    path: "/",
-    component: HomeView,
-    name: "HomeView",
+    path: '/',
+    component: LoginView,
+    name: 'LoginView',
   },
   {
-    path: "/notice",
+    path: '/home',
+    component: HomeView,
+    name: 'HomeView',
+  },
+  {
+    path: '/notice',
     component: NoticeView,
     name: "NoticeView",
   },
@@ -27,34 +36,49 @@ const routes = [
     name: "_idView",
   },
   {
-    path: "/qr",
+    path: '/qr',
     component: QrReaderView,
-    name: "QrReaderView",
+    name: 'QrReaderView',
   },
   {
-    path: "/curriculum",
+    path: '/curriculum',
     component: CurriculumView,
-    name: "CurriculumView",
+    name: 'CurriculumView',
   },
   {
-    path: "/mypage",
+    path: '/mypage',
     component: MyPageView,
-    name: "MyPageView",
+    name: 'MyPageView',
   },
   {
-    path: "/success",
+    path: '/success',
     component: SuccessView,
-    name: "SuccessView",
+    name: 'SuccessView',
   },
   {
-    path: "/fail",
+    path: '/fail',
     component: FailView,
-    name: "FailView",
+    name: 'FailView',
   },
   {
-    path: "/reauth",
+    path: '/reauth',
     component: ReAuthView,
-    name: "ReAuthView",
+    name: 'ReAuthView',
+  },
+  {
+    path: '/positionauth',
+    component: PositionAuthView,
+    name: 'PositionAuthView',
+  },
+  {
+    path: '/faq',
+    component: FAQView,
+    name: 'FAQView',
+  },
+  {
+    path: '/join',
+    component: JoinView,
+    name: 'JoinView',
   },
 ];
 

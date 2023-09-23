@@ -1,17 +1,16 @@
-import { api } from "@/api/api.js";
-import { ref } from "vue";
-import { useRouter } from "vue-router";
+import { api } from '@/api/api.js';
+import { ref } from 'vue';
+import { useRouter } from 'vue-router';
 
 export function useFetch(url, config = {}) {
   const data = ref();
   const isLoading = ref(false);
   const isSuccess = ref(false);
   const isError = ref(false);
-  const router = useRouter();
 
   const { onSuccess, onError, headers } = config;
 
-  const fetchTemplate = async (token, param) => {
+  const fetchData = async (params) => {
     isLoading.value = true;
     isSuccess.value = false;
     isError.value = false;
@@ -21,9 +20,8 @@ export function useFetch(url, config = {}) {
         url,
         headers: {
           ...headers,
-          ...token,
         },
-        param,
+        params,
       });
 
       data.value = res.data;
@@ -31,34 +29,6 @@ export function useFetch(url, config = {}) {
       isSuccess.value = true;
     } catch (err) {
       throw err;
-    }
-  };
-
-  const fetchData = async (url) => {
-    try {
-      await fetchTemplate(
-        {
-          Authorization: `Bearer ${localStorage.getItem("access")}`,
-        },
-        url
-      );
-    } catch (err) {
-      if (err.status === 401) {
-        try {
-          await fetchTemplate({
-            Authorization: `Bearer ${localStorage.getItem("refresh")}`,
-          });
-        } catch (err) {
-          throw err;
-        }
-      }
-
-      isError.ref = true;
-      onError && onError(err);
-
-      if (err.status === 401) {
-        return router.push({ name: LoginView });
-      }
     } finally {
       isLoading.value = false;
     }

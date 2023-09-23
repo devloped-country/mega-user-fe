@@ -1,5 +1,5 @@
 .header {
-  padding: 14px 24px;
+  padding: 18px 24px;
   position: sticky;
   top: 0;
   left: 0;
@@ -7,7 +7,13 @@
   align-items: center;
   gap: 8px;
   width: 100%;
-  background-color: var(--gray-color-100);
+  background-color: var(--white-color);
+  border-bottom: 1px solid var(--gray-color-100);
+}
+
+.changeHeader {
+  display: flex;
+  justify-content: center;
 }
 
 .logo {
@@ -17,4 +23,9 @@
 .title {
   font-weight: var(--semi-bold-font-weight);
   font-size: var(--semi-bold-font-size);
+}
+
+.backArrow {
+  position: absolute;
+  left: 16px;
 }

@@ -1,27 +1,4 @@
-<template></template>
-
-<!-- <template>
-  <button
-    type="button"
-    @click="btnClick"
-    style="
-      position: absolute;
-      top: 0;
-      z-index: 10;
-      background-color: white;
-      padding: 8px 16px;
-    "
-  >
-    버튼임당
-  </button>
-  <div
-    if="isShowing"
-    style="color: wheat; position: absolute; top: 20; z-index: 5"
-  >
-    {{ longitude }}
-    {{ latitude }}
-  </div>
-
+<template>
   <qrcode-stream @detect="onDetect" class="qr" @camera-on="onCameraOn">
     <div class="loadingIndicator" v-if="loading" />
     <header class="qrHeader" />
@@ -42,25 +19,25 @@
 </template>
 
 <script setup>
-import { useRouter } from "vue-router";
-import { QrcodeStream } from "vue-qrcode-reader";
-import { ref, onMounted } from "vue";
-import { useFetch } from "@/composables";
+import { useRouter } from 'vue-router';
+import { QrcodeStream } from 'vue-qrcode-reader';
+import { ref, onMounted } from 'vue';
+import { useFetch } from '@/composables';
 
 const router = useRouter();
 const loading = ref(true);
 const latitude = ref();
 const longitude = ref();
-const url = ref("");
+const url = ref('');
 const isShowing = ref(false);
 
-const { data, fetchData } = useFetch("", {
+const { data, fetchData } = useFetch('', {
   headers: {
-    email: "ub@naver.com",
+    email: 'ub@naver.com',
   },
   onSuccess: (res) => {
     router.push({
-      name: "SuccessView",
+      name: 'SuccessView',
     });
   },
   onError: (err) => {
@@ -68,35 +45,34 @@ const { data, fetchData } = useFetch("", {
 
     if (status === -1) {
       router.push({
-        name: "FailView",
+        name: 'FailView',
       });
     } else if (status === -2) {
       router.push({
-        name: "ReAuthView",
+        name: 'ReAuthView',
       });
     }
   },
 });
 
 const onDetect = (detectedCodes) => {
+  calcUserPosition();
+
   const [qrCode] = detectedCodes;
   url.value = qrCode.rawValue;
-  const [_, qr] = url.value.split("=");
-  fetchData("/qr/auth?qr=".concat(qr));
-  // qrCode.rawValue가 내가 보낸 url이면
-  // message.value = firstCode.rawValue;
-  // 해당 url로 post 요청을 id와 pw를 담아서 보낸다.
-  // 요청이 성공하면 router로 성공 페이지(출석이 완료되었습니다?)로 보낸다.
+  const [_, qr] = url.value.split('=');
+
+  fetchData('/qr/auth?qr='.concat(qr));
 };
 
 const onCameraOn = () => {
   loading.value = false;
 };
 
-const btnClick = () => {
+onMounted(() => {
   isShowing.value = true;
   getLocation();
-};
+});
 
 const getLocation = () => {
   if (navigator.geolocation) {
@@ -107,11 +83,20 @@ const getLocation = () => {
 const showPosition = (position) => {
   latitude.value = position.coords.latitude;
   longitude.value = position.coords.longitude;
+};
 
-  console.log(latitude, longitude);
+const calcUserPosition = () => {
+  if (
+    (latitude.value < 35.172593 && latitude.value > 35.173093) ||
+    (longitude.value < 129.1303 && longitude > 129.1311)
+  ) {
+    router.push({
+      name: 'PositionAuthView',
+    });
+  }
 };
 </script>
 
 <style>
-@import "./Reader.css";
-</style> -->
+@import './Reader.css';
+</style>
