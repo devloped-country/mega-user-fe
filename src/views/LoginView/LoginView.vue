@@ -97,7 +97,7 @@ const handleLoginBtnClick = () => {
   }
 
   axios
-    .post('/api/login', {
+    .post('/v1/login', {
       email: auth.value.email,
       password: sha256(auth.value.password).toString(),
     })
