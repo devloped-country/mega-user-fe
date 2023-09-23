@@ -48,6 +48,7 @@ import { ref, inject, onMounted } from 'vue';
 import { useMutation } from '@/composables';
 import { useRouter } from 'vue-router';
 import { Crypto } from '@/util/crypto';
+import axios from 'axios';
 import sha256 from 'crypto-js/sha256';
 
 const router = useRouter();
@@ -59,21 +60,21 @@ const auth = ref({
   password: '',
 });
 
-const { mutate: loginMutate, isLoading: isLoginLoading } = useMutation(
-  '/login',
-  {
-    method: 'post',
-    onSuccess: ({ data }) => {
-      localStorage.setItem('access', data.accessToken);
-      localStorage.setItem('refresh', data.refreshToken);
-      router.push({ name: 'HomeView' });
-    },
-    onError: () => {
-      isShowingValidateMessage.value = true;
-      validateMessage.value = '이메일 또는 비밀번호가 틀렸어요.';
-    },
-  }
-);
+// const { mutate: loginMutate, isLoading: isLoginLoading } = useMutation(
+//   '/login',
+//   {
+//     method: 'post',
+//     onSuccess: ({ data }) => {
+//       localStorage.setItem('access', data.accessToken);
+//       localStorage.setItem('refresh', data.refreshToken);
+//       router.push({ name: 'HomeView' });
+//     },
+//     onError: () => {
+//       isShowingValidateMessage.value = true;
+//       validateMessage.value = '이메일 또는 비밀번호가 틀렸어요.';
+//     },
+//   }
+// );
 
 const validateEmail = (email) => {
   const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
@@ -92,10 +93,21 @@ const handleLoginBtnClick = () => {
     return;
   }
 
-  axios.post('/api/login', {
-    email: auth.value.email,
-    password: sha256(auth.value.password).toString(),
-  });
+  axios
+    .post('/api/login', {
+      email: auth.value.email,
+      password: sha256(auth.value.password).toString(),
+    })
+    .then((data) => {
+      console.log(data);
+      localStorage.setItem('access', data.accessToken);
+      localStorage.setItem('refresh', data.refreshToken);
+      router.push({ name: 'HomeView' });
+    })
+    .catch((err) => {
+      isShowingValidateMessage.value = true;
+      validateMessage.value = '이메일 또는 비밀번호가 틀렸어요.';
+    });
 };
 
 const handleJoinBtnClick = () => {
