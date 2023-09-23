@@ -5,13 +5,17 @@ export const api = axios.create({
   headers: {
     'Content-Type': 'application/json;charset=utf-8',
     Accept: 'application/json',
+    'Access-Control-Allow-Origin': `https://mega-user-fe.s3-website.ap-northeast-2.amazonaws.com`,
+    'Access-Control-Allow-Credentials': 'true',
   },
 });
 
 api.interceptors.request.use(
   async function (config) {
-    const loginUrl = 'https://mega-user.vercel.app/';
-    const joinUrl = 'https://mega-user.vercel.app/join';
+    const loginUrl =
+      'https://mega-user-fe.s3-website.ap-northeast-2.amazonaws.com/';
+    const joinUrl =
+      'https://mega-user-fe.s3-website.ap-northeast-2.amazonaws.com/join';
 
     if (location.href === loginUrl || location.href === joinUrl) {
       return config;
