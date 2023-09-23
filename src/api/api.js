@@ -5,8 +5,6 @@ export const api = axios.create({
   headers: {
     'Content-Type': 'application/json;charset=utf-8',
     Accept: 'application/json',
-    'Access-Control-Allow-Origin': `https://mega-user-fe.s3-website.ap-northeast-2.amazonaws.com`,
-    'Access-Control-Allow-Credentials': 'true',
   },
 });
 
