@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 export const api = axios.create({
-  baseURL: '/api',
+  baseURL: '/v1',
   headers: {
     'Content-Type': 'application/json;charset=utf-8',
     Accept: 'application/json',
@@ -26,7 +26,7 @@ api.interceptors.request.use(
     }
 
     try {
-      const res = await fetch('/api/auth', {
+      const res = await fetch('/v1/auth', {
         headers: {
           Authorization: `Bearer ${localStorage.getItem('access')}`,
           'Token-Kind': 'access',
@@ -40,7 +40,7 @@ api.interceptors.request.use(
       return config;
     } catch (err) {
       try {
-        const res = await fetch('/api/auth', {
+        const res = await fetch('/v1/auth', {
           headers: {
             Authorization: `Bearer ${localStorage.getItem('refresh')}`,
             'Token-Kind': 'refresh',
