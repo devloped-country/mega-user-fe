@@ -138,7 +138,7 @@ const { mutate: mutateEmailCheck } = useMutation('/userCheck', {
       showSuccessModal.value = true;
     } else {
       showFailModal.value = true;
-      isEmailChecked = false;
+      isEmailChecked.value = false;
     }
   }
 });

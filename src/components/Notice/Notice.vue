@@ -17,8 +17,12 @@
           <td class="table-tag">{{ notice.tag_id }}</td>
           <td class="table-title">{{ notice.title }}</td>
           <td class="table-date">
-            {{ notice.author }} <br />
-            {{ notice.createdDate }}
+            <div>
+              {{ notice.author }}
+            </div>
+            <div class="table-created-date">
+              {{ notice.createdDate }}
+            </div>
           </td>
         </tr>
       </tbody>

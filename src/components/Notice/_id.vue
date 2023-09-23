@@ -1,13 +1,4 @@
 <template>
-  <div class="notice-header">
-    <img
-      class="go-notice-button"
-      src="../../assets/images/angle-small-left.svg"
-      alt="공지사항 목록으로 돌아가기"
-      @click="goNotice()"
-    />
-    <h2>공지사항</h2>
-  </div>
   <div class="body-wrapper" v-if="data">
     <div class="title-bar">
       <div class="top-bar-row-1">

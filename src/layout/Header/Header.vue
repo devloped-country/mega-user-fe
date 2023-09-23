@@ -48,6 +48,8 @@ const getPageTitle = () => {
       return '자주 묻는 질문';
     case 'JoinView':
       return '회원 가입';
+    case '_idView':
+      return '공지사항';
     default:
       return 'NotFound';
   }
@@ -56,6 +58,7 @@ const getPageTitle = () => {
 const changeLayout = () => {
   switch (route.name) {
     case 'FAQView':
+    case '_idView':
       isHeaderLayout.value = true;
       break;
     default:
