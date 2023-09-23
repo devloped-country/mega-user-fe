@@ -97,7 +97,7 @@ const handleLoginBtnClick = () => {
   }
 
   axios
-    .post('https://api.megamega-app.com/login', {
+    .post('/api/login', {
       email: auth.value.email,
       password: sha256(auth.value.password).toString(),
     })
