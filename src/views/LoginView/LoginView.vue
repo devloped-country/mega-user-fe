@@ -92,7 +92,7 @@ const handleLoginBtnClick = () => {
     return;
   }
 
-  loginMutate({
+  axios.post('/api/login', {
     email: auth.value.email,
     password: sha256(auth.value.password).toString(),
   });
