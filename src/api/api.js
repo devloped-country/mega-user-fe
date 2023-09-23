@@ -26,7 +26,7 @@ api.interceptors.request.use(
     }
 
     try {
-      const res = await fetch('/api/auth', {
+      const res = await fetch('https://api.megamega-app.com/auth', {
         headers: {
           Authorization: `Bearer ${localStorage.getItem('access')}`,
           'Token-Kind': 'access',
@@ -40,7 +40,7 @@ api.interceptors.request.use(
       return config;
     } catch (err) {
       try {
-        const res = await fetch('/api/auth', {
+        const res = await fetch('https://api.megamega-app.com/auth', {
           headers: {
             Authorization: `Bearer ${localStorage.getItem('refresh')}`,
             'Token-Kind': 'refresh',
