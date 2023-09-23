@@ -14,7 +14,7 @@ api.interceptors.request.use(
     const joinUrl = 'https://mega-user.vercel.app/join';
 
     if (location.href === loginUrl || location.href === joinUrl) {
-      return config;
+      // return config;
     }
 
     if (!localStorage.getItem('access') || !localStorage.getItem('refresh')) {
@@ -22,43 +22,43 @@ api.interceptors.request.use(
       location.href = loginUrl;
     }
 
-    try {
-      const res = await fetch('/api/auth', {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem('access')}`,
-          'Token-Kind': 'access',
-        },
-      });
+  //   try {
+  //     const res = await fetch('/api/auth', {
+  //       headers: {
+  //         Authorization: `Bearer ${localStorage.getItem('access')}`,
+  //         'Token-Kind': 'access',
+  //       },
+  //     });
 
-      if (res.status === 401) {
-        throw new Error();
-      }
+  //     if (res.status === 401) {
+  //       throw new Error();
+  //     }
 
-      return config;
-    } catch (err) {
-      try {
-        const res = await fetch('/api/auth', {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem('refresh')}`,
-            'Token-Kind': 'refresh',
-          },
-        }).then((res) => res.json());
+  //     return config;
+  //   } catch (err) {
+  //     try {
+  //       const res = await fetch('/api/auth', {
+  //         headers: {
+  //           Authorization: `Bearer ${localStorage.getItem('refresh')}`,
+  //           'Token-Kind': 'refresh',
+  //         },
+  //       }).then((res) => res.json());
 
-        localStorage.setItem('access', res.access);
-        if (res.refresh) {
-          localStorage.setItem('refresh', res.refresh);
-        }
+  //       localStorage.setItem('access', res.access);
+  //       if (res.refresh) {
+  //         localStorage.setItem('refresh', res.refresh);
+  //       }
 
-        return config;
-      } catch (error) {
-        localStorage.clear();
-        location.href = loginUrl;
-      }
-    }
+  //       return config;
+  //     } catch (error) {
+  //       localStorage.clear();
+  //       location.href = loginUrl;
+  //     }
+  //   }
 
-    return config;
-  },
-  function (error) {
-    return Promise.reject(error);
-  }
+  //   return config;
+  // },
+  // function (error) {
+  //   return Promise.reject(error);
+  // }
 );
