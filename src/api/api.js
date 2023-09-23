@@ -12,7 +12,7 @@ api.interceptors.request.use(
   async function (config) {
     const loginUrl = 'http://mega-user.vercel.app/';
     const joinUrl = 'http://mega-user.vercel.app/join';
-    console.log(location.href);
+
     if (location.href === loginUrl || location.href === joinUrl) {
       return config;
     }
