@@ -97,10 +97,13 @@ const handleLoginBtnClick = () => {
   }
 
   axios
-    .post('/api/login', {
-      email: auth.value.email,
-      password: sha256(auth.value.password).toString(),
-    })
+    .post(
+      'http://ec2-43-202-53-236.ap-northeast-2.compute.amazonaws.com/login',
+      {
+        email: auth.value.email,
+        password: sha256(auth.value.password).toString(),
+      }
+    )
     .then(({ data }) => {
       localStorage.setItem('access', data.accessToken);
       localStorage.setItem('refresh', data.refreshToken);
