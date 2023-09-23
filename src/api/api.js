@@ -10,8 +10,8 @@ export const api = axios.create({
 
 api.interceptors.request.use(
   async function (config) {
-    const loginUrl = 'http://localhost:3000/';
-    const joinUrl = 'http://localhost:3000/join';
+    const loginUrl = 'https://mega-user.vercel.app/';
+    const joinUrl = 'https://mega-user.vercel.app/join';
 
     if (location.href === loginUrl || location.href === joinUrl) {
       return config;
@@ -20,6 +20,7 @@ api.interceptors.request.use(
     if (!localStorage.getItem('access') || !localStorage.getItem('refresh')) {
       localStorage.clear();
       location.href = loginUrl;
+      return;
     }
 
     try {

@@ -48,9 +48,11 @@ import { ref, inject, onMounted } from 'vue';
 import { useMutation } from '@/composables';
 import { useRouter } from 'vue-router';
 import { Crypto } from '@/util/crypto';
+import axios from 'axios';
 import sha256 from 'crypto-js/sha256';
 
 const router = useRouter();
+const isLoginLoading = ref(false);
 const cryptojs = inject('cryptojs');
 const isShowingValidateMessage = ref(false);
 const validateMessage = ref('');
@@ -59,21 +61,21 @@ const auth = ref({
   password: '',
 });
 
-const { mutate: loginMutate, isLoading: isLoginLoading } = useMutation(
-  '/login',
-  {
-    method: 'post',
-    onSuccess: ({ data }) => {
-      localStorage.setItem('access', data.accessToken);
-      localStorage.setItem('refresh', data.refreshToken);
-      router.push({ name: 'HomeView' });
-    },
-    onError: () => {
-      isShowingValidateMessage.value = true;
-      validateMessage.value = '이메일 또는 비밀번호가 틀렸어요.';
-    },
-  }
-);
+// const { mutate: loginMutate, isLoading: isLoginLoading } = useMutation(
+//   '/login',
+//   {
+//     method: 'post',
+//     onSuccess: ({ data }) => {
+//       localStorage.setItem('access', data.accessToken);
+//       localStorage.setItem('refresh', data.refreshToken);
+//       router.push({ name: 'HomeView' });
+//     },
+//     onError: () => {
+//       isShowingValidateMessage.value = true;
+//       validateMessage.value = '이메일 또는 비밀번호가 틀렸어요.';
+//     },
+//   }
+// );
 
 const validateEmail = (email) => {
   const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
@@ -82,20 +84,38 @@ const validateEmail = (email) => {
 };
 
 const handleLoginBtnClick = () => {
+  if (isLoginLoading.value) {
+    return;
+  }
+
+  isLoginLoading.value = true;
+
   if (!validateEmail(auth.value.email)) {
     isShowingValidateMessage.value = true;
     validateMessage.value = '이메일 형식이 맞지 않아요.';
     return;
   }
 
-  if (isLoginLoading.value) {
-    return;
-  }
-
-  loginMutate({
-    email: auth.value.email,
-    password: sha256(auth.value.password).toString(),
-  });
+  axios
+    .post(
+      'http://ec2-43-202-53-236.ap-northeast-2.compute.amazonaws.com/login',
+      {
+        email: auth.value.email,
+        password: sha256(auth.value.password).toString(),
+      }
+    )
+    .then(({ data }) => {
+      localStorage.setItem('access', data.accessToken);
+      localStorage.setItem('refresh', data.refreshToken);
+      router.push({ name: 'HomeView' });
+    })
+    .catch((err) => {
+      isShowingValidateMessage.value = true;
+      validateMessage.value = '이메일 또는 비밀번호가 틀렸어요.';
+    })
+    .finally(() => {
+      isLoginLoading.value = false;
+    });
 };
 
 const handleJoinBtnClick = () => {
