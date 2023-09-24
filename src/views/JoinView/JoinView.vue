@@ -14,7 +14,7 @@
           required
           placeholder="이메일 *"
         />
-        <button :class="classes['emailCheck-button']" @click="emailCheck">
+        <button :class="classes['emailCheck-button']" @click="emailCheck" type="button">
           중복 확인
         </button>
       </div>
@@ -93,20 +93,30 @@
 
   <div v-if="showSuccessModal">
     <Modal title="사용 가능한 email입니다.">
-      <button @click="showSuccessModal = false">확인</button>
+      <button 
+        :class="classes['ok-button']"
+        @click="showSuccessModal = false"
+      >
+        확인
+      </button>
     </Modal>
   </div>
 
   <div v-if="showFailModal">
     <Modal title="중복된 email입니다. 다른 email을 사용하세요.">
-      <button @click="showFailModal = false">확인</button>
+      <button 
+       :class="classes['ok-button']"
+        @click="showFailModal = false"
+      >
+        확인
+      </button>
     </Modal>
   </div>
 
   <div v-if="showMissingInputModal">
     <Modal title="입력이 누락된 값이 있습니다.">
       <button
-        :class="classes['register-button']"
+        :class="classes['ok-button']"
         @click="showMissingInputModal = false"
       >
         확인
@@ -116,16 +126,22 @@
 
   <div v-if="showInvalidInputModal">
     <Modal title="입력값을 확인하세요.">
-      <button @click="showInvalidInputModal = false">확인</button>
+      <button 
+        :class="classes['ok-button']"
+        @click="showInvalidInputModal = false"
+      >
+        확인
+      </button>
     </Modal>
   </div>
 </template>
 
 <script setup>
-import { useMutation } from '@/composables';
+// import { useMutation } from '@/composables';
 import { ref } from 'vue';
 import Modal from '@/teleport/Modal/Modal.vue';
 import { useRouter } from 'vue-router';
+import axios from 'axios';
 
 const router = useRouter();
 
@@ -156,7 +172,7 @@ const validateEmail = () => {
     isEmailValid.value = true;
     return;
   }
-  const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+  const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/; 
   isEmailValid.value = emailRegex.test(email.value);
 };
 
@@ -190,17 +206,17 @@ const checkPasswordMatch = () => {
 };
 
 // 이메일 중복 검사 관련
-const { mutate: mutateEmailCheck } = useMutation('/userCheck', {
-  method: 'post',
-  onSuccess: (res) => {
-    if (res.data === 'OK') {
-      showSuccessModal.value = true;
-    } else {
-      showFailModal.value = true;
-      isEmailChecked.value = false;
-    }
-  },
-});
+// const { mutate: mutateEmailCheck } = useMutation('/userCheck', {
+//   method: 'post',
+//   onSuccess: (res) => {
+    // if (res.data === 'OK') {
+    //   showSuccessModal.value = true;
+    // } else {
+    //   showFailModal.value = true;
+    //   isEmailChecked.value = false;
+    // }
+  // },
+// });
 
 const emailCheck = () => {
   if (email.value === '') {
@@ -211,15 +227,23 @@ const emailCheck = () => {
     const param = {
       email: email.value,
     };
-    mutateEmailCheck(param);
+    // mutateEmailCheck(param);
+    axios.post('https://api.megamega-app.com/userCheck', param).then((res) => {
+      if (res.data === 'OK') {
+      showSuccessModal.value = true;
+    } else {
+      showFailModal.value = true;
+      isEmailChecked.value = false;
+    }
+    })
     isEmailChecked.value = true;
   }
 };
 
-// 회원 가입 관련
-const { mutate: mutateRegister } = useMutation('/join', {
-  method: 'post',
-});
+// // 회원 가입 관련
+// const { mutate: mutateRegister } = useMutation('/join', {
+//   method: 'post',
+// });
 
 const registerUser = () => {
   if (
@@ -255,9 +279,12 @@ const registerUser = () => {
     name: name.value,
     phone: phone.value,
   };
-  mutateRegister(param);
+  // mutateRegister(param);
 
-  router.push('/');
+  axios.post('https://api.megamega-app.com/join', param).then(() => {
+    router.push('/');
+  });
+
 };
 
 const goToMainPage = () => {
