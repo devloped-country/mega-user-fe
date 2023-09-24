@@ -24,7 +24,7 @@ import { QrcodeStream } from 'vue-qrcode-reader';
 import { ref, onMounted } from 'vue';
 import { useFetch } from '@/composables';
 import VueJwtDecode from 'vue-jwt-decode';
-import axios from 'axios';
+import { api } from '@/api/api.js';
 
 const router = useRouter();
 const loading = ref(true);
@@ -34,29 +34,29 @@ const url = ref('');
 const isShowing = ref(false);
 const token = ref(VueJwtDecode.decode(localStorage.getItem('access')));
 
-const { data, fetchData } = useFetch('', {
-  headers: {
-    email: token.value.jti,
-  },
-  onSuccess: (res) => {
-    router.push({
-      name: 'SuccessView',
-    });
-  },
-  onError: (err) => {
-    const status = parseInt(err.response.data.status);
+// const { data, fetchData } = useFetch('', {
+//   headers: {
+//     email: token.value.jti,
+//   },
+//   onSuccess: (res) => {
+//     router.push({
+//       name: 'SuccessView',
+//     });
+//   },
+//   onError: (err) => {
+//     const status = parseInt(err.response.data.status);
 
-    if (status === -1) {
-      router.push({
-        name: 'FailView',
-      });
-    } else if (status === -2) {
-      router.push({
-        name: 'ReAuthView',
-      });
-    }
-  },
-});
+//     if (status === -1) {
+//       router.push({
+//         name: 'FailView',
+//       });
+//     } else if (status === -2) {
+//       router.push({
+//         name: 'ReAuthView',
+//       });
+//     }
+//   },
+// });
 
 const onDetect = (detectedCodes) => {
   calcUserPosition();
@@ -64,7 +64,29 @@ const onDetect = (detectedCodes) => {
   url.value = qrCode.rawValue;
   const [_, qr] = url.value.split('=');
 
-  axios.get('https://api.megamega-app.com/qr/auth?qr='.concat(qr));
+  api('https://api.megamega-app.com/qr/auth?qr='.concat(qr), {
+    heaers: {
+      email: token.value.jti,
+    },
+  })
+    .then(() => {
+      router.push({
+        name: 'SuccessView',
+      });
+    })
+    .catch((err) => {
+      const status = parseInt(err.response.data.status);
+
+      if (status === -1) {
+        router.push({
+          name: 'FailView',
+        });
+      } else if (status === -2) {
+        router.push({
+          name: 'ReAuthView',
+        });
+      }
+    });
 };
 
 const onCameraOn = () => {
