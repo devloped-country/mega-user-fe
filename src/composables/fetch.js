@@ -14,7 +14,7 @@ export function useFetch(url, config = {}) {
     isLoading.value = true;
     isSuccess.value = false;
     isError.value = false;
-    console.log(params);
+
     try {
       const res = await api({
         url,
