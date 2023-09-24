@@ -33,10 +33,13 @@ apiClient.interceptors.request.use(
 
     try {
       const res = await fetch(`${import.meta.env.VITE_API3}/auth`, {
+        method: 'post',
         headers: {
           Authorization: `Bearer ${localStorage.getItem('access')}`,
-          'Token-Kind': 'access',
         },
+        body: JSON.stringify({
+          kind: 'access',
+        }),
       });
 
       if (res.status === 401) {
@@ -47,10 +50,13 @@ apiClient.interceptors.request.use(
     } catch (err) {
       try {
         const res = await fetch(`${import.meta.env.VITE_API3}/auth`, {
+          method: 'post',
           headers: {
             Authorization: `Bearer ${localStorage.getItem('refresh')}`,
-            'Token-Kind': 'refresh',
           },
+          body: JSON.stringify({
+            kind: 'refresh',
+          }),
         }).then((res) => res.json());
 
         localStorage.setItem('access', res.access);
@@ -89,10 +95,13 @@ api.interceptors.request.use(
 
     try {
       const res = await fetch(`${import.meta.env.VITE_API3}/auth`, {
+        method: 'post',
         headers: {
           Authorization: `Bearer ${localStorage.getItem('access')}`,
-          'Token-Kind': 'access',
         },
+        body: JSON.stringify({
+          kind: 'access',
+        }),
       });
 
       if (res.status === 401) {
@@ -103,10 +112,13 @@ api.interceptors.request.use(
     } catch (err) {
       try {
         const res = await fetch(`${import.meta.env.VITE_API3}/auth`, {
+          method: 'post',
           headers: {
             Authorization: `Bearer ${localStorage.getItem('refresh')}`,
-            'Token-Kind': 'refresh',
           },
+          body: JSON.stringify({
+            kind: 'refresh',
+          }),
         }).then((res) => res.json());
 
         localStorage.setItem('access', res.access);
@@ -116,9 +128,8 @@ api.interceptors.request.use(
 
         return config;
       } catch (error) {
-        console.log('!!');
-        // localStorage.clear();
-        // location.href = loginUrl;
+        localStorage.clear();
+        location.href = loginUrl;
       }
     }
 
