@@ -24,7 +24,7 @@ import { QrcodeStream } from 'vue-qrcode-reader';
 import { ref, onMounted } from 'vue';
 import { useFetch } from '@/composables';
 import VueJwtDecode from 'vue-jwt-decode';
-import { api } from '@/api/api.js';
+import { api } from '@/api/api';
 
 const router = useRouter();
 const loading = ref(true);
@@ -67,7 +67,9 @@ const onDetect = (detectedCodes) => {
   api({
     url: 'https://api.megamega-app.com/qr/auth?qr='.concat(qr),
     headers: {
-      email: token.value.jti,
+      common: {
+        email: token.value.jti,
+      },
     },
   })
     .then(() => {
