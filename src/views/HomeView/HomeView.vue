@@ -25,7 +25,6 @@ import HomeProfile from '@/components/HomeProfile/HomeProfile.vue';
 import HomeNotice from '@/components/HomeNotice/HomeNotice.vue';
 import HomeCurriculum from '@/components/HomeCurriculum/HomeCurriculum.vue';
 
-const token = ref(VueJwtDecode.decode(localStorage.getItem('access')));
 const currDate = ref({
   year: new Date().getFullYear(),
   month: new Date().getMonth() + 1,
@@ -58,7 +57,7 @@ const {
 
 watchEffect(() => {
   fetchAttendanceData({
-    name: token.value.aud,
+    token: localStorage.getItem('refresh'),
     year: currDate.value.year,
     month: currDate.value.month,
   });
@@ -68,7 +67,7 @@ onMounted(() => {
   fetchCurriculumData();
   fetchNoticeData();
   fetchProfileData({
-    name: token.value.aud,
+    token: localStorage.getItem('refresh'),
   });
 });
 </script>
