@@ -76,6 +76,7 @@ const onDetect = (detectedCodes) => {
       });
     })
     .catch((err) => {
+      console.log(err);
       const status = parseInt(err.response.data.status);
 
       if (status === -1) {
