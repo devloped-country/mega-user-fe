@@ -134,6 +134,20 @@
       </button>
     </Modal>
   </div>
+
+  <div v-if="showJoinSuccessModal">
+    <Modal title="회원가입이 완료되었습니다.">
+      <button 
+        :class="classes['ok-button']"
+        @click="() => {
+          router.push('/');
+          showJoinSuccessModal = false;
+        }"
+      >
+        확인
+      </button>
+    </Modal>
+  </div>
 </template>
 
 <script setup>
@@ -165,6 +179,7 @@ const showSuccessModal = ref(false);
 const showFailModal = ref(false);
 const showMissingInputModal = ref(false);
 const showInvalidInputModal = ref(false);
+const showJoinSuccessModal = ref(false);
 
 // 이메일 검증
 const validateEmail = () => {
@@ -281,8 +296,15 @@ const registerUser = () => {
   };
   // mutateRegister(param);
 
-  axios.post('https://api.megamega-app.com/join', param).then(() => {
-    router.push('/');
+  // axios.post('https://api.megamega-app.com/join', param).then(() => {
+  //   router.push('/');
+  // });
+
+  axios.post('https://api.megamega-app.com/join', param).then((res) => {
+
+    if (res.data === 'OK') {
+      showJoinSuccessModal.value = true;
+    }
   });
 
 };
