@@ -67,6 +67,8 @@ const onDetect = (detectedCodes) => {
   api({
     url: 'https://api.megamega-app.com/qr/auth?qr='.concat(qr),
     headers: {
+      'Content-Type': 'application/json;charset=utf-8',
+      Accept: 'application/json',
       common: {
         email: token.value.jti,
       },
