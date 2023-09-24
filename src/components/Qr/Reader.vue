@@ -23,6 +23,7 @@ import { useRouter } from 'vue-router';
 import { QrcodeStream } from 'vue-qrcode-reader';
 import { ref, onMounted } from 'vue';
 import { useFetch } from '@/composables';
+import VueJwtDecode from 'vue-jwt-decode';
 
 const router = useRouter();
 const loading = ref(true);
@@ -30,10 +31,11 @@ const latitude = ref();
 const longitude = ref();
 const url = ref('');
 const isShowing = ref(false);
+const token = ref(VueJwtDecode.decode(localStorage.getItem('access')));
 
 const { data, fetchData } = useFetch('', {
   headers: {
-    email: 'ub@naver.com',
+    email: token.value.jti,
   },
   onSuccess: (res) => {
     router.push({
