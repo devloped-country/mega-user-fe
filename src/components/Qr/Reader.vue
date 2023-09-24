@@ -64,7 +64,7 @@ const onDetect = (detectedCodes) => {
   url.value = qrCode.rawValue;
   const [_, qr] = url.value.split('=');
 
-  axios.get('/qr/auth?qr='.concat(qr));
+  axios.get('https://api.megamega-app.com/qr/auth?qr='.concat(qr));
 };
 
 const onCameraOn = () => {
