@@ -66,7 +66,7 @@ const onDetect = (detectedCodes) => {
 
   api({
     url: 'https://api.megamega-app.com/qr/auth?qr='.concat(qr),
-    heaers: {
+    headers: {
       email: token.value.jti,
     },
   })
