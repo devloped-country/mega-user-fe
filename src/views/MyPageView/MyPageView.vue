@@ -2,7 +2,7 @@
   <section :class="classes.wrapper">
     <header :class="classes.greetingWrapper">
       <h3 :class="classes.greeting">
-        {{ token.aud }} 님 안녕하세요 👋🏼<br />오늘도 좋은 하루 되세요.
+        {{ name }} 님 안녕하세요 👋🏼<br />오늘도 좋은 하루 되세요.
       </h3>
     </header>
     <main :class="classes.contentWrapper">
@@ -29,12 +29,26 @@
 
 <script setup>
 import rightArrow from '@/assets/images/angle-small-right.svg';
-import { ref } from 'vue';
+import { ref, onMounted } from 'vue';
+import { useMutation } from '@/composables';
 import { useRouter } from 'vue-router';
-import VueJwtDecode from 'vue-jwt-decode';
 
-const token = ref(VueJwtDecode.decode(localStorage.getItem('access')));
 const router = useRouter();
+
+const name = ref('');
+
+const { mutate: nameMutate } = useMutation('/name', {
+  method: 'post',
+  onSuccess: (res) => {
+    name.value = res.data.name;
+  },
+});
+
+onMounted(() => {
+  nameMutate({
+    refresh: localStorage.getItem('refresh'),
+  });
+});
 
 const handleLogoutBtnClick = () => {
   window.localStorage.clear();

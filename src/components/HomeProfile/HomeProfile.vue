@@ -6,9 +6,9 @@
     </div>
     <div v-else :class="classes.profileWrapper">
       <img :src="userImg" alt="사진" :class="classes.userImg" />
-      <div>
+      <div v-if="name">
         <h3 :class="classes.name">
-          {{ name.aud }}
+          {{ name }}
           <span :class="classes.role">Developer</span>
         </h3>
         <ul :class="classes.list">
@@ -26,10 +26,8 @@
 
 <script setup>
 import userImg from '@/assets/images/User-60.svg';
-import VueJwtDecode from 'vue-jwt-decode';
-import { ref } from 'vue';
-
-const name = ref(VueJwtDecode.decode(localStorage.getItem('access')));
+import { ref, onMounted } from 'vue';
+import { useMutation } from '@/composables';
 
 defineProps({
   profileData: {
@@ -38,6 +36,21 @@ defineProps({
   isProfileLoading: {
     type: Boolean,
   },
+});
+
+const name = ref('');
+
+const { mutate: nameMutate } = useMutation('/name', {
+  method: 'post',
+  onSuccess: (res) => {
+    name.value = res.data.name;
+  },
+});
+
+onMounted(() => {
+  nameMutate({
+    refresh: localStorage.getItem('refresh'),
+  });
 });
 
 const getProfileColumnTitle = (index) => {
