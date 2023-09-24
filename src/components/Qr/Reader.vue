@@ -65,10 +65,13 @@ const onDetect = (detectedCodes) => {
   const [_, qr] = url.value.split('=');
 
   apiClient({
+    mothod: 'post',
     url: '/qr/auth?qr='.concat(qr),
     headers: {
       'Content-Type': 'application/json;charset=utf-8',
       Accept: 'application/json',
+    },
+    params: {
       email: token.value.jti,
     },
   })
