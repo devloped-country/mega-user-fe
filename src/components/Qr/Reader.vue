@@ -64,7 +64,8 @@ const onDetect = (detectedCodes) => {
   url.value = qrCode.rawValue;
   const [_, qr] = url.value.split('=');
 
-  api('https://api.megamega-app.com/qr/auth?qr='.concat(qr), {
+  api({
+    url: 'https://api.megamega-app.com/qr/auth?qr='.concat(qr),
     heaers: {
       email: token.value.jti,
     },
