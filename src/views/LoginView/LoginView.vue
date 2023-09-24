@@ -108,7 +108,7 @@ const handleLoginBtnClick = () => {
     })
     .catch((err) => {
       isShowingValidateMessage.value = true;
-      validateMessage.value = '이메일 또는 비밀번호가 틀렸어요.';
+      validateMessage.value = err;
     })
     .finally(() => {
       isLoginLoading.value = false;
