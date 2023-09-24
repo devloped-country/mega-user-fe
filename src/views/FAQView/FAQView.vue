@@ -2,10 +2,10 @@
   <section :class="classes.wrapper">
     <ul :class="classes.qaList">
       <template v-for="({ title, content }, index) in faqData" :key="index">
-        <li :class="classes.qaItem">
+        <li :class="classes.qaItem" @click="toggleContent(index)">
           <div :class="classes.qaQuestion">
             {{ title }}
-            <button @click="toggleContent(index)">
+            <button>
               <img v-if="!showContent[index]" :src="downButton" />
               <img v-else :src="upButton" />
             </button>

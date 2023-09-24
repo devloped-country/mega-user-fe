@@ -4,11 +4,11 @@
 }
 
 .greetingWrapper {
-  padding: 24px;
+  padding: 36px 24px;
 }
 
 .greeting {
-  line-height: 150%;
+  line-height: 180%;
   font-size: var(--medium-font-size);
   font-weight: var(--semi-bold-font-weight);
 }
@@ -22,7 +22,10 @@
 }
 
 .info {
-  padding: 72px 0 120px;
+  height: calc(100% - 301px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
   text-align: center;
 }
 

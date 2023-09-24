@@ -8,7 +8,7 @@
       <li :class="classes.item" v-for="curriculum in curriculumData">
         <h3 :class="classes.itemTitle">{{ curriculum.subject }}</h3>
         <p :class="classes.date">
-          {{ DateFormat.formatYYYYMMDD(curriculum.startDate) }} ~
+          {{ DateFormat.formatYYYYMMDD(curriculum.startDate) }} ~ <br />
           {{ DateFormat.formatYYYYMMDD(curriculum.endDate) }}
         </p>
       </li>
