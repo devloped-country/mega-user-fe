@@ -1,4 +1,6 @@
-<template>
+<template></template>
+
+<!-- <template>
   <button
     type="button"
     @click="btnClick"
@@ -40,25 +42,25 @@
 </template>
 
 <script setup>
-import { useRouter } from 'vue-router';
-import { QrcodeStream } from 'vue-qrcode-reader';
-import { ref, onMounted } from 'vue';
-import { useFetch } from '@/composables';
+import { useRouter } from "vue-router";
+import { QrcodeStream } from "vue-qrcode-reader";
+import { ref, onMounted } from "vue";
+import { useFetch } from "@/composables";
 
 const router = useRouter();
 const loading = ref(true);
 const latitude = ref();
 const longitude = ref();
-const url = ref('');
+const url = ref("");
 const isShowing = ref(false);
 
-const { data, fetchData } = useFetch('', {
+const { data, fetchData } = useFetch("", {
   headers: {
-    email: 'ub@naver.com',
+    email: "ub@naver.com",
   },
   onSuccess: (res) => {
     router.push({
-      name: 'SuccessView',
+      name: "SuccessView",
     });
   },
   onError: (err) => {
@@ -66,11 +68,11 @@ const { data, fetchData } = useFetch('', {
 
     if (status === -1) {
       router.push({
-        name: 'FailView',
+        name: "FailView",
       });
     } else if (status === -2) {
       router.push({
-        name: 'ReAuthView',
+        name: "ReAuthView",
       });
     }
   },
@@ -79,8 +81,8 @@ const { data, fetchData } = useFetch('', {
 const onDetect = (detectedCodes) => {
   const [qrCode] = detectedCodes;
   url.value = qrCode.rawValue;
-  const [_, qr] = url.value.split('=');
-  fetchData('/qr/auth?qr='.concat(qr));
+  const [_, qr] = url.value.split("=");
+  fetchData("/qr/auth?qr=".concat(qr));
   // qrCode.rawValue가 내가 보낸 url이면
   // message.value = firstCode.rawValue;
   // 해당 url로 post 요청을 id와 pw를 담아서 보낸다.
@@ -111,5 +113,5 @@ const showPosition = (position) => {
 </script>
 
 <style>
-@import './Reader.css';
-</style>
+@import "./Reader.css";
+</style> -->

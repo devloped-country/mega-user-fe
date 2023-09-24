@@ -1,6 +1,6 @@
-import { api } from '@/api/api.js';
-import { ref } from 'vue';
-import { useRouter } from 'vue-router';
+import { api } from "@/api/api.js";
+import { ref } from "vue";
+import { useRouter } from "vue-router";
 
 export function useFetch(url, config = {}) {
   const data = ref();
@@ -11,7 +11,7 @@ export function useFetch(url, config = {}) {
 
   const { onSuccess, onError, headers } = config;
 
-  const fetchTemplate = async (token, url) => {
+  const fetchTemplate = async (token, param) => {
     isLoading.value = true;
     isSuccess.value = false;
     isError.value = false;
@@ -23,6 +23,7 @@ export function useFetch(url, config = {}) {
           ...headers,
           ...token,
         },
+        param,
       });
 
       data.value = res.data;
@@ -37,7 +38,7 @@ export function useFetch(url, config = {}) {
     try {
       await fetchTemplate(
         {
-          Authorization: `Bearer ${localStorage.getItem('access')}`,
+          Authorization: `Bearer ${localStorage.getItem("access")}`,
         },
         url
       );
@@ -45,7 +46,7 @@ export function useFetch(url, config = {}) {
       if (err.status === 401) {
         try {
           await fetchTemplate({
-            Authorization: `Bearer ${localStorage.getItem('refresh')}`,
+            Authorization: `Bearer ${localStorage.getItem("refresh")}`,
           });
         } catch (err) {
           throw err;
