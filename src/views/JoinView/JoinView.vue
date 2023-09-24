@@ -92,7 +92,7 @@
   </section>
 
   <div v-if="showSuccessModal">
-    <Modal title="사용 가능한 email입니다.">
+    <Modal title="가능" content="사용 가능한 이메일입니다.">
       <button 
         :class="classes['ok-button']"
         @click="showSuccessModal = false"
@@ -103,7 +103,7 @@
   </div>
 
   <div v-if="showFailModal">
-    <Modal title="중복된 email입니다. 다른 email을 사용하세요.">
+    <Modal title="입력 오류" content="중복된 이메일입니다. 다른 이메일을 사용하세요." >
       <button 
        :class="classes['ok-button']"
         @click="showFailModal = false"
@@ -114,7 +114,7 @@
   </div>
 
   <div v-if="showMissingInputModal">
-    <Modal title="입력이 누락된 값이 있습니다.">
+    <Modal title="입력 오류" content="입력이 누락된 값이 있습니다.">
       <button
         :class="classes['ok-button']"
         @click="showMissingInputModal = false"
@@ -125,7 +125,7 @@
   </div>
 
   <div v-if="showInvalidInputModal">
-    <Modal title="입력값을 확인하세요.">
+    <Modal title="입력 오류" content="입력값을 확인하세요.">
       <button 
         :class="classes['ok-button']"
         @click="showInvalidInputModal = false"
@@ -136,7 +136,7 @@
   </div>
 
   <div v-if="showJoinSuccessModal">
-    <Modal title="회원가입이 완료되었습니다.">
+    <Modal title="성공" content="회원가입이 완료되었습니다.">
       <button 
         :class="classes['ok-button']"
         @click="() => {
