@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 export const api = axios.create({
-  baseURL: 'https://api.megamega-app.com',
+  baseURL: `${import.meta.env.VITE_API3}`,
   headers: {
     'Content-Type': 'application/json;charset=utf-8',
     Accept: 'application/json',
@@ -9,13 +9,17 @@ export const api = axios.create({
 });
 
 export const apiClient = axios.create({
-  baseURL: 'https://api.megamega-app.com',
+  baseURL: `${import.meta.env.VITE_API3}`,
+  headers: {
+    'Content-Type': 'application/json;charset=utf-8',
+    Accept: 'application/json',
+  },
 });
 
 apiClient.interceptors.request.use(
   async function (config) {
-    const loginUrl = 'https://mega-user.vercel.app/';
-    const joinUrl = 'https://mega-user.vercel.app/join';
+    const loginUrl = `${import.meta.env.VITE_API2}/`;
+    const joinUrl = `${import.meta.env.VITE_API2}/join`;
 
     if (location.href === loginUrl || location.href === joinUrl) {
       return config;
@@ -28,7 +32,7 @@ apiClient.interceptors.request.use(
     }
 
     try {
-      const res = await fetch('/auth', {
+      const res = await fetch(`${import.meta.env.VITE_API3}/auth`, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem('access')}`,
           'Token-Kind': 'access',
@@ -42,7 +46,7 @@ apiClient.interceptors.request.use(
       return config;
     } catch (err) {
       try {
-        const res = await fetch('/auth', {
+        const res = await fetch(`${import.meta.env.VITE_API3}/auth`, {
           headers: {
             Authorization: `Bearer ${localStorage.getItem('refresh')}`,
             'Token-Kind': 'refresh',
@@ -70,8 +74,8 @@ apiClient.interceptors.request.use(
 
 api.interceptors.request.use(
   async function (config) {
-    const loginUrl = 'https://mega-user.vercel.app/';
-    const joinUrl = 'https://mega-user.vercel.app/join';
+    const loginUrl = `${import.meta.env.VITE_API2}/`;
+    const joinUrl = `${import.meta.env.VITE_API2}/join`;
 
     if (location.href === loginUrl || location.href === joinUrl) {
       return config;
@@ -84,7 +88,7 @@ api.interceptors.request.use(
     }
 
     try {
-      const res = await fetch('/auth', {
+      const res = await fetch(`${import.meta.env.VITE_API3}/auth`, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem('access')}`,
           'Token-Kind': 'access',
@@ -98,7 +102,7 @@ api.interceptors.request.use(
       return config;
     } catch (err) {
       try {
-        const res = await fetch('/auth', {
+        const res = await fetch(`${import.meta.env.VITE_API3}/auth`, {
           headers: {
             Authorization: `Bearer ${localStorage.getItem('refresh')}`,
             'Token-Kind': 'refresh',
