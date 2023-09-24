@@ -31,7 +31,7 @@ const routes = [
     name: "NoticeView",
   },
   {
-    path: "/noticeDetail/:id",
+    path: "/notice/:id",
     component: _idView,
     name: "_idView",
   },

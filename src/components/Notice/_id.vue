@@ -33,11 +33,9 @@ import { useFetch, useFetchs, useMutation } from '@/composables';
 const route = useRoute();
 const router = useRouter();
 
-const { data, fetchData } = useFetch('/noticeDetail', {
+
+const { data, fetchData } = useFetch('/notice/' + route.params.id, {
   method: 'get',
-  headers: {
-    id: route.params.id,
-  },
 });
 
 const goNotice = () => {
