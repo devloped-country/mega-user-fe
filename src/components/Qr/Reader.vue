@@ -24,6 +24,7 @@ import { QrcodeStream } from 'vue-qrcode-reader';
 import { ref, onMounted } from 'vue';
 import { useFetch } from '@/composables';
 import VueJwtDecode from 'vue-jwt-decode';
+import axios from 'axios';
 
 const router = useRouter();
 const loading = ref(true);
@@ -59,12 +60,11 @@ const { data, fetchData } = useFetch('', {
 
 const onDetect = (detectedCodes) => {
   calcUserPosition();
-
   const [qrCode] = detectedCodes;
   url.value = qrCode.rawValue;
   const [_, qr] = url.value.split('=');
 
-  fetchData('/qr/auth?qr='.concat(qr));
+  axios.get('/qr/auth?qr='.concat(qr));
 };
 
 const onCameraOn = () => {
