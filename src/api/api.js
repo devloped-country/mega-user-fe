@@ -116,8 +116,9 @@ api.interceptors.request.use(
 
         return config;
       } catch (error) {
-        localStorage.clear();
-        location.href = loginUrl;
+        console.log('!!');
+        // localStorage.clear();
+        // location.href = loginUrl;
       }
     }
 
