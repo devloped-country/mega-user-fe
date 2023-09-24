@@ -2,7 +2,7 @@
   <section :class="classes.wrapper">
     <header :class="classes.greetingWrapper">
       <h3 :class="classes.greeting">
-        {{ name.aud }} 님 안녕하세요 👋🏼<br />오늘도 좋은 하루 되세요.
+        {{ token.aud }} 님 안녕하세요 👋🏼<br />오늘도 좋은 하루 되세요.
       </h3>
     </header>
     <main :class="classes.contentWrapper">
@@ -33,7 +33,7 @@ import { ref } from 'vue';
 import { useRouter } from 'vue-router';
 import VueJwtDecode from 'vue-jwt-decode';
 
-const name = ref(VueJwtDecode.decode(localStorage.getItem('access')));
+const token = ref(VueJwtDecode.decode(localStorage.getItem('access')));
 const router = useRouter();
 
 const handleLogoutBtnClick = () => {
