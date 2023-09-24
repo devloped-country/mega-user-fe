@@ -9,7 +9,7 @@
         <li :class="[classes.calendarPinItem, classes.attendance]">출석</li>
         <li :class="[classes.calendarPinItem, classes.late]">지각</li>
         <li :class="[classes.calendarPinItem, classes.earlyLeave]">조퇴</li>
-        <li :class="[classes.calendarPinItem, classes.officialLeave]">공결</li>
+        <li :class="[classes.calendarPinItem, classes.officialLeave]">공가</li>
         <li :class="[classes.calendarPinItem, classes.absent]">결석</li>
         <li :class="[classes.calendarPinItem, classes.sickLeave]">병가</li>
       </ul>

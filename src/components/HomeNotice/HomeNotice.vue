@@ -5,7 +5,12 @@
       <VueSpinner size="40" />
     </div>
     <ul v-else :class="classes.list">
-      <li :class="classes.item" v-for="notice in noticeData">
+      <li
+        :class="classes.item"
+        v-for="notice in noticeData"
+        :key="notice.id"
+        @click="() => handleNoticeItemClick(notice.id)"
+      >
         <h3 :class="classes.itemTitle">
           [{{ notice.tag }}] {{ notice.title }}
         </h3>
@@ -22,6 +27,8 @@
 
 <script setup>
 import { DateFormat } from '@/util/format';
+import { useRouter } from 'vue-router';
+const router = useRouter();
 
 defineProps({
   noticeData: { type: Object },
@@ -29,6 +36,10 @@ defineProps({
     type: Boolean,
   },
 });
+
+const handleNoticeItemClick = (id) => {
+  router.push(`/noticeDetail/${id}`);
+};
 </script>
 
 <style module="classes" scoped>

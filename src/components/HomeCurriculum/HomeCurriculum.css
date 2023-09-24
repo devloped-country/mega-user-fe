@@ -22,12 +22,20 @@
 }
 
 .itemTitle {
+  padding: 8px 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 184px;
+  min-width: 160px;
+  width: 100%;
   font-size: 14px;
 }
 
 .date {
   font-size: 12px;
   color: var(--gray-color-200);
+  line-height: 16px;
 }
 
 .curriculumLoadingWrapper {

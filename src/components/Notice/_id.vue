@@ -26,35 +26,23 @@
 </template>
 
 <script setup>
-import { useRoute, useRouter } from "vue-router";
-import { ref, onMounted, onUpdated } from "vue";
-import { useFetch, useFetchs, useMutation } from "@/composables";
+import { useRoute, useRouter } from 'vue-router';
+import { ref, onMounted, onUpdated } from 'vue';
+import { useFetch, useFetchs, useMutation } from '@/composables';
 
 const route = useRoute();
 const router = useRouter();
 
-// console.log(route.params.id);
-
-const { data, fetchData } = useFetch("/noticeDetail", {
-  method: "get",
+const { data, fetchData } = useFetch('/noticeDetail', {
+  method: 'get',
   headers: {
     id: route.params.id,
   },
-  onSucess: (res) => {
-    console.log("통신 성공!");
-    console.log(res);
-  },
-  onError: (res) => {
-    console.log("통신 실패!");
-    console.log(res);
-  },
 });
-
-// console.log(data);
 
 const goNotice = () => {
   router.push({
-    name: "NoticeView",
+    name: 'NoticeView',
   });
 };
 
@@ -64,5 +52,5 @@ onMounted(() => {
 </script>
 
 <style>
-@import "./Notice.css";
+@import './Notice.css';
 </style>

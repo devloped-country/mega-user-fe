@@ -48,3 +48,11 @@
   justify-content: center;
   align-items: center;
 }
+
+.info {
+  padding: 0 16px 8px;
+  font-size: 12px;
+  color: var(--gray-color-200);
+  font-weight: 400;
+  text-align: center;
+}

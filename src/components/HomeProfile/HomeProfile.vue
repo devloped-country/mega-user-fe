@@ -8,7 +8,8 @@
       <img :src="userImg" alt="사진" :class="classes.userImg" />
       <div>
         <h3 :class="classes.name">
-          김유범 <span :class="classes.role">Developer</span>
+          {{ name.aud }}
+          <span :class="classes.role">Developer</span>
         </h3>
         <ul :class="classes.list">
           <li :class="classes.item" v-for="(profile, index) in profileData">
@@ -17,11 +18,18 @@
         </ul>
       </div>
     </div>
+    <footer :class="classes.info">
+      위 정보는 단위기간 내의 출결 정보입니다.
+    </footer>
   </section>
 </template>
 
 <script setup>
 import userImg from '@/assets/images/User-60.svg';
+import VueJwtDecode from 'vue-jwt-decode';
+import { ref } from 'vue';
+
+const name = ref(VueJwtDecode.decode(localStorage.getItem('access')));
 
 defineProps({
   profileData: {
@@ -41,9 +49,9 @@ const getProfileColumnTitle = (index) => {
     case 2:
       return '조퇴';
     case 3:
-      return '결석';
-    case 4:
       return '공가';
+    case 4:
+      return '결석';
     case 5:
       return '병가';
   }
