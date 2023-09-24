@@ -20,6 +20,7 @@
 <script setup>
 import { ref, watchEffect, onMounted } from 'vue';
 import { useFetch } from '@/composables';
+import VueJwtDecode from 'vue-jwt-decode';
 import Calendar from '@/components/Calendar/Calendar.vue';
 import HomeProfile from '@/components/HomeProfile/HomeProfile.vue';
 import HomeNotice from '@/components/HomeNotice/HomeNotice.vue';
