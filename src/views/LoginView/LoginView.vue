@@ -82,7 +82,7 @@ const validateEmail = (email) => {
 
   return emailRegex.test(email);
 };
-
+console.log(import.meta.env.VITE_API2);
 const handleLoginBtnClick = () => {
   if (isLoginLoading.value) {
     return;
