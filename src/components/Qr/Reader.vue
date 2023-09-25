@@ -59,7 +59,9 @@ const token = ref(VueJwtDecode.decode(localStorage.getItem('access')));
 // });
 
 const onDetect = (detectedCodes) => {
-  calcUserPosition();
+  if (calcUserPosition()) {
+    return;
+  }
   const [qrCode] = detectedCodes;
   url.value = qrCode.rawValue;
   const [_, qr] = url.value.split('=');
@@ -124,6 +126,8 @@ const calcUserPosition = () => {
     router.push({
       name: 'PositionAuthView',
     });
+
+    return true;
   }
 };
 </script>
