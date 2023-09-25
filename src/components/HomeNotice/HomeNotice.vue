@@ -38,7 +38,7 @@ defineProps({
 });
 
 const handleNoticeItemClick = (id) => {
-  router.push(`/noticeDetail/${id}`);
+  router.push(`/notice/${id}`);
 };
 </script>
 

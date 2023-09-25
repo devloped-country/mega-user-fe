@@ -19,31 +19,36 @@
   position: sticky;
   top: 0;
   z-index: 1;
-  border: none; 
+  border: none;
 }
 
 .col-index {
   width: 10%;
+  vertical-align: middle;
 }
 
 .col-subject {
   width: 30%;
   word-break: keep-all;
   line-height: 150%;
+  vertical-align: middle;
 }
 
 .col-detail {
   width: 60%;
+  vertical-align: middle;
 }
 
 .col-time {
   width: 15%;
+  vertical-align: middle;
 }
 
 .col-period {
   min-width: 150px;
   word-break: keep-all;
   line-height: 150%;
+  vertical-align: middle;
 }
 
 .curriculum-table td {
@@ -54,7 +59,8 @@
   font-weight: var(--bold-font-weight);
 }
 
-.curriculum-table th, .curriculum-table td {
+.curriculum-table th,
+.curriculum-table td {
   border: 1px solid var(--gray-color-200);
   padding: 8px;
   text-align: center;

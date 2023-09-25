@@ -5,7 +5,7 @@
         <tr>
           <th class="table-tag">태그</th>
           <th class="table-title">제목</th>
-          <th class="tabe-date">작성일자</th>
+          <th class="table-date">작성일자</th>
         </tr>
       </thead>
       <tbody class="table-body">
