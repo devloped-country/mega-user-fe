@@ -60,8 +60,10 @@ const token = ref(VueJwtDecode.decode(localStorage.getItem('access')));
 
 const onDetect = (detectedCodes) => {
   if (calcUserPosition()) {
+    console.log('!!!');
     return;
   }
+  console.log('!');
   const [qrCode] = detectedCodes;
   url.value = qrCode.rawValue;
   const [_, qr] = url.value.split('=');
@@ -119,10 +121,12 @@ const showPosition = (position) => {
 };
 
 const calcUserPosition = () => {
+  console.log(latitude.value, longitude.value);
   if (
     (latitude.value < 35.172593 && latitude.value > 35.173093) ||
     (longitude.value < 129.1303 && longitude > 129.1311)
   ) {
+    console.log('!!');
     router.push({
       name: 'PositionAuthView',
     });
