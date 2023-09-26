@@ -116,8 +116,10 @@ const getLocation = () => {
 };
 
 const showPosition = (position) => {
-  latitude.value = position.coords.latitude;
-  longitude.value = position.coords.longitude;
+  // latitude.value = position.coords.latitude;
+  // longitude.value = position.coords.longitude;
+  latitude.value = 35.1678779;
+  longitude.value = 129.1231357;
 };
 
 const calcUserPosition = () => {
