@@ -88,6 +88,10 @@ const onDetect = (detectedCodes) => {
     .then(() => {
       router.push({
         name: 'SuccessView',
+        query: {
+          latitude: latitude.value,
+          longitude: longitude.value,
+        },
       });
     })
     .catch((err) => {
