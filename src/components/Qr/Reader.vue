@@ -116,19 +116,15 @@ const getLocation = () => {
 };
 
 const showPosition = (position) => {
-  // latitude.value = position.coords.latitude;
-  // longitude.value = position.coords.longitude;
-  latitude.value = 35.1678779;
-  longitude.value = 129.1231357;
+  latitude.value = position.coords.latitude;
+  longitude.value = position.coords.longitude;
 };
 
 const calcUserPosition = () => {
-  console.log(latitude.value, longitude.value);
   if (
     (latitude.value < 35.172593 || latitude.value > 35.173093) &&
     (longitude.value < 129.1303 || longitude > 129.1311)
   ) {
-    console.log('!!');
     router.push({
       name: 'PositionAuthView',
     });

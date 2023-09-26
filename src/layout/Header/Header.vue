@@ -80,7 +80,8 @@ watch(
       route.name === 'LoginView' ||
       route.name === 'SuccessView' ||
       route.name === 'FailView' ||
-      route.name === 'ReAuthView'
+      route.name === 'ReAuthView' ||
+      route.name === 'PositionAuthView'
     ) {
       isHeaderShowing.value = false;
       return;
