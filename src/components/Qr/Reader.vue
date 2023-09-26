@@ -62,10 +62,6 @@ const onDetect = (detectedCodes) => {
   if (!calcUserPosition()) {
     router.push({
       name: 'PositionAuthView',
-      query: {
-        latitude: latitude.value,
-        longitude: longitude.value,
-      },
     });
     return;
   }
@@ -88,10 +84,6 @@ const onDetect = (detectedCodes) => {
     .then(() => {
       router.push({
         name: 'SuccessView',
-        query: {
-          latitude: latitude.value,
-          longitude: longitude.value,
-        },
       });
     })
     .catch((err) => {
@@ -100,18 +92,10 @@ const onDetect = (detectedCodes) => {
       if (status === -1) {
         router.push({
           name: 'FailView',
-          query: {
-            latitude: latitude.value,
-            longitude: longitude.value,
-          },
         });
       } else if (status === -2) {
         router.push({
           name: 'ReAuthView',
-          query: {
-            latitude: latitude.value,
-            longitude: longitude.value,
-          },
         });
       }
     });
