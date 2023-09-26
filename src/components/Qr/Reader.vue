@@ -59,7 +59,7 @@ const token = ref(VueJwtDecode.decode(localStorage.getItem('access')));
 // });
 
 const onDetect = (detectedCodes) => {
-  if (calcUserPosition()) {
+  if (!calcUserPosition()) {
     router.push({
       name: 'PositionAuthView',
       query: {
@@ -139,8 +139,10 @@ const showPosition = (position) => {
 
 const calcUserPosition = () => {
   return (
-    (latitude.value < 35.172593 || latitude.value > 35.173093) &&
-    (longitude.value < 129.1303 || longitude > 129.1311)
+    latitude.value > 35.172593 &&
+    latitude.value < 35.173093 &&
+    longitude.value > 129.1303 &&
+    longitude < 129.1311
   );
 };
 </script>
