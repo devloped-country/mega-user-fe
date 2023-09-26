@@ -5,6 +5,8 @@
     :img="positionAuth"
     route="HomeView"
   />
+  {{ $route.query.longitude }}
+  {{ $route.query.latitude }}
 </template>
 
 <script setup>
