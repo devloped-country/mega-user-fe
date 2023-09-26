@@ -44,6 +44,8 @@ const getPageTitle = () => {
       return '';
     case 'ReAuthView':
       return '';
+    case 'PositionAuthView':
+      return '';
     case 'FAQView':
       return '자주 묻는 질문';
     case 'JoinView':
