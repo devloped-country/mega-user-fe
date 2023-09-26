@@ -142,7 +142,7 @@ const calcUserPosition = () => {
     latitude.value > 35.172593 &&
     latitude.value < 35.173093 &&
     longitude.value > 129.1303 &&
-    longitude < 129.1311
+    longitude.value < 129.1311
   );
 };
 </script>
