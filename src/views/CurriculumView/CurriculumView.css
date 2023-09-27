@@ -1,2 +1,77 @@
-.example {
+.CurriculumWrapper {
+  padding: 0 0;
+  height: calc(100vh - 190px);
+}
+
+.table-container {
+  max-height: calc(100vh - 150px);
+  max-width: 100%;
+  overflow: auto;
+}
+
+.curriculum-table {
+  width: 200%; /* 컨테이너보다 넓게 설정하여 가로 스크롤을 강제 */
+  border-collapse: collapse;
+}
+
+.curriculum-table thead th {
+  background: white;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  border: none;
+}
+
+.col-index {
+  width: 10%;
+  vertical-align: middle;
+}
+
+.col-subject {
+  width: 30%;
+  word-break: keep-all;
+  line-height: 150%;
+  vertical-align: middle;
+}
+
+.col-detail {
+  width: 60%;
+  vertical-align: middle;
+}
+
+.col-time {
+  width: 15%;
+  vertical-align: middle;
+}
+
+.col-period {
+  min-width: 150px;
+  word-break: keep-all;
+  line-height: 150%;
+  vertical-align: middle;
+}
+
+.curriculum-table td {
+  vertical-align: middle;
+}
+
+.curriculum-table th {
+  font-weight: var(--bold-font-weight);
+}
+
+.curriculum-table th,
+.curriculum-table td {
+  border: 1px solid var(--gray-color-200);
+  padding: 8px;
+  text-align: center;
+  color: #333;
+}
+
+.curriculum-table tbody tr:first-child td {
+  border-top: 2px solid var(--black-color);
+}
+
+/* tbody의 마지막 행의 아래쪽 테두리를 검은색으로 설정 */
+.curriculum-table tbody tr:last-child {
+  border-bottom: 2px solid var(--black-color);
 }

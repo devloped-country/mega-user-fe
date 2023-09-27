@@ -7,10 +7,21 @@
   justify-content: center;
   align-items: center;
   background-color: rgba(0, 0, 0, 0.5);
+  z-index: 10000;
 }
 
 .wrapper {
   padding: 32px;
   border-radius: 20px;
   background-color: var(--white-color);
+}
+
+.title {
+  font-size: var(--semi-bold-font-size);
+  padding-bottom: 10px;
+}
+
+.content {
+  color: var(--gray-color-500);
+  font-weight: 500;
 }

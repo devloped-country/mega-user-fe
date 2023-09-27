@@ -1,0 +1,46 @@
+.wrapper {
+  margin-top: 24px;
+  border-radius: 10px;
+  background-color: var(--white-color);
+}
+
+.title {
+  padding: 16px;
+  font-weight: var(--semi-bold-font-weight);
+}
+
+.list {
+  cursor: pointer;
+}
+
+.item {
+  padding: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--gray-color-100);
+}
+
+.itemTitle {
+  padding: 8px 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 184px;
+  min-width: 160px;
+  width: 100%;
+  font-size: 14px;
+}
+
+.date {
+  font-size: 12px;
+  color: var(--gray-color-200);
+  line-height: 16px;
+}
+
+.curriculumLoadingWrapper {
+  padding: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

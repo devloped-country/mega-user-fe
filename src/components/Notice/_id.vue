@@ -1,13 +1,4 @@
 <template>
-  <div class="notice-header">
-    <img
-      class="go-notice-button"
-      src="../../assets/images/angle-small-left.svg"
-      alt="공지사항 목록으로 돌아가기"
-      @click="goNotice()"
-    />
-    <h2>공지사항</h2>
-  </div>
   <div class="body-wrapper" v-if="data">
     <div class="title-bar">
       <div class="top-bar-row-1">
@@ -35,35 +26,21 @@
 </template>
 
 <script setup>
-import { useRoute, useRouter } from "vue-router";
-import { ref, onMounted, onUpdated } from "vue";
-import { useFetch, useFetchs, useMutation } from "@/composables";
+import { useRoute, useRouter } from 'vue-router';
+import { ref, onMounted, onUpdated } from 'vue';
+import { useFetch, useFetchs, useMutation } from '@/composables';
 
 const route = useRoute();
 const router = useRouter();
 
-// console.log(route.params.id);
 
-const { data, fetchData } = useFetch("/noticeDetail", {
-  method: "get",
-  headers: {
-    id: route.params.id,
-  },
-  onSucess: (res) => {
-    console.log("통신 성공!");
-    console.log(res);
-  },
-  onError: (res) => {
-    console.log("통신 실패!");
-    console.log(res);
-  },
+const { data, fetchData } = useFetch('/notice/' + route.params.id, {
+  method: 'get',
 });
-
-// console.log(data);
 
 const goNotice = () => {
   router.push({
-    name: "NoticeView",
+    name: 'NoticeView',
   });
 };
 
@@ -73,5 +50,5 @@ onMounted(() => {
 </script>
 
 <style>
-@import "./Notice.css";
+@import './Notice.css';
 </style>

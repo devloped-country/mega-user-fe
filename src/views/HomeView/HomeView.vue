@@ -1,65 +1,77 @@
 <template>
-  <!-- <Modal :title="title">
-    <div>여기서 모달마다 다른 기능을 구현하여 slot으로 넘겨줘요.</div>
-  </Modal> -->
+  <section :class="classes.wrapper">
+    <HomeProfile
+      :profileData="profileData"
+      :isProfileLoading="isProfileLoading"
+    />
+    <HomeNotice :noticeData="noticeData" :isNoticeLoading="isNoticeLoading" />
+    <HomeCurriculum
+      :curriculumData="curriculumData"
+      :isCurriculumLoading="isCurriculumLoading"
+    />
+    <Calendar
+      :attendanceData="attendanceData"
+      :currDate="currDate"
+      :isAttendanceLoading="isAttendanceLoading"
+    />
+  </section>
 </template>
 
 <script setup>
-import { onMounted, ref } from 'vue';
-import { useRouter } from 'vue-router';
-import { useFetch, useFetchs, useMutation } from '@/composables';
-import Modal from '@/teleport/Modal/Modal.vue';
+import { ref, watchEffect, onMounted } from 'vue';
+import { useFetch } from '@/composables';
+import Calendar from '@/components/Calendar/Calendar.vue';
+import HomeProfile from '@/components/HomeProfile/HomeProfile.vue';
+import HomeNotice from '@/components/HomeNotice/HomeNotice.vue';
+import HomeCurriculum from '@/components/HomeCurriculum/HomeCurriculum.vue';
 
-const id = ref('');
-const pw = ref('');
-const title = ref('여기서는 모달의 공통 스타일을 정의해요.');
-const router = useRouter();
-
-const { data: noticeData, fetchData: fetchNotice } = useFetch('/notice', {
-  method: 'get',
-  onSuccess: (res) => {
-    console.log('통신 성공!');
-    console.log(res);
-  },
-  onError: (res) => {
-    console.log('통신 실패!');
-    console.log(res);
-  },
+const currDate = ref({
+  year: new Date().getFullYear(),
+  month: new Date().getMonth() + 1,
+  date: new Date().getDate(),
 });
 
-const { data: noticesData, fetchData: fetchNotices } = useFetchs(
-  ['/notice', '/notice', '/notice'],
-  {
-    onSuccess: (res) => {
-      console.log('통신 성공!');
-      console.log(res);
-    },
-    onError: (res) => {
-      console.log('통신 실패!');
-      console.log(res);
-    },
-  }
-);
+const {
+  isLoading: isAttendanceLoading,
+  data: attendanceData,
+  fetchData: fetchAttendanceData,
+} = useFetch('/home/attendance');
 
-const { mutate } = useMutation('/notice', {
-  method: 'post',
-  onSuccess: (res) => {
-    console.log('통신 성공!');
-    console.log(res);
-  },
-  onError: (res) => {
-    console.log('통신 실패!');
-    console.log(res);
-  },
+const {
+  isLoading: isCurriculumLoading,
+  data: curriculumData,
+  fetchData: fetchCurriculumData,
+} = useFetch('/home/curriculum');
+
+const {
+  isLoading: isNoticeLoading,
+  data: noticeData,
+  fetchData: fetchNoticeData,
+} = useFetch('/home/notice');
+
+const {
+  isLoading: isProfileLoading,
+  data: profileData,
+  fetchData: fetchProfileData,
+} = useFetch('/home/profile');
+
+watchEffect(() => {
+  fetchAttendanceData({
+    token: localStorage.getItem('refresh'),
+    year: currDate.value.year,
+    month: currDate.value.month,
+  });
 });
 
 onMounted(() => {
-  // fetchNotice();
-  // fetchNotices();
-  // mutate({ id, pw });
+  fetchCurriculumData();
+  fetchNoticeData();
+  fetchProfileData({
+    token: localStorage.getItem('refresh'),
+  });
 });
 </script>
 
-<style module="classes">
-/* @import './HomeView.css'; */
+<style module="classes" scoped>
+@import './HomeView.css';
 </style>

@@ -1,5 +1,5 @@
-import { defineConfig } from "vite";
-import vue from "@vitejs/plugin-vue";
+import { defineConfig } from 'vite';
+import vue from '@vitejs/plugin-vue';
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -7,10 +7,10 @@ export default defineConfig({
   server: {
     port: 3000,
     proxy: {
-      "/api": {
-        target: "http://localhost:8081",
+      '/v1': {
+        target: 'https://api.megamega-app.com',
         changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/api/, ""),
+        rewrite: (path) => path.replace(/^\/v1/, ''),
       },
     },
   },
@@ -24,6 +24,6 @@ export default defineConfig({
   //   },
   // },
   resolve: {
-    alias: [{ find: "@", replacement: "/src" }],
+    alias: [{ find: '@', replacement: '/src' }],
   },
 });

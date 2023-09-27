@@ -1,2 +1,38 @@
-.example {
+.wrapper {
+  height: calc(100vh - 69px);
+  /* margin-bottom: 72px; */
+}
+
+.greetingWrapper {
+  padding: 36px 24px;
+}
+
+.greeting {
+  line-height: 180%;
+  font-size: var(--medium-font-size);
+  font-weight: var(--semi-bold-font-weight);
+}
+
+.item {
+  padding: 16px 24px;
+  border: 1px solid var(--gray-color-100);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.info {
+  height: calc(100% - 337px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.infoText {
+  line-height: 180%;
+}
+
+.item:last-child {
+  border-top: none;
 }

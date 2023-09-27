@@ -1,0 +1,70 @@
+.dateList {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  text-align: center;
+}
+
+.date {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 12px;
+  gap: 4px;
+}
+
+.notAttendancePin {
+  width: 12px;
+  height: 12px;
+  background-color: var(--gray-color-200);
+  border-radius: 100px;
+}
+
+.attendancePin {
+  width: 12px;
+  height: 12px;
+  background-color: var(--blue-color);
+  border-radius: 100px;
+}
+
+.latePin {
+  width: 12px;
+  height: 12px;
+  background-color: var(--yellow-color);
+  border-radius: 100px;
+}
+
+.absentPin {
+  width: 12px;
+  height: 12px;
+  background-color: var(--red-color);
+  border-radius: 100px;
+}
+
+.earlyLeavePin {
+  width: 12px;
+  height: 12px;
+  background-color: var(--green-color);
+  border-radius: 100px;
+}
+
+.officialLeavePin {
+  width: 12px;
+  height: 12px;
+  background-color: var(--orange-color);
+  border-radius: 100px;
+}
+
+.sickPin {
+  width: 12px;
+  height: 12px;
+  background-color: var(--pink-color);
+  border-radius: 100px;
+}
+
+.attendanceLoadingWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 140px 0;
+}
