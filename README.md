@@ -2,7 +2,7 @@
 
 ![logo](https://github.com/devloping-country/mega-admin/assets/132139751/ad19ceec-3edd-40c7-a309-74b72c8020c0)
 
-## 🏊 Mega App v1.0
+## 📛 Mega App v1.0
 
 > **클라우드 네이티브 애플리케이션 개발자 양성과정(메가존 클라우드) 1차 프로젝트** <br /> **프로젝트 기간 : 2023.09.14 ~ 2023.09.27**
 
@@ -13,43 +13,85 @@
     <td align="center">
     <a href="https://github.com/kimub">
     <img src="https://avatars.githubusercontent.com/u/132139751?v=4" width="100px;" alt="kimub"/>         
-    <br /><b>kimub</b><br>
+    <br /><b>kimub</b><br />
     </a>
+     <b>김유범</b>
     </td>
     <td align="center">
     <a href="https://github.com/chomy12">
     <img src="https://avatars.githubusercontent.com/u/136536632?v=4" width="100px;" alt="chomy12"/>         
     <br /><b>chomy12</b><br>
     </a>
+     <b>옥승철</b>
     </td>
     <td align="center">
     <a href="https://github.com/shshe22">
     <img src="https://avatars.githubusercontent.com/u/136536558?v=4" width="100px;" alt="shshe22"/>         
     <br /><b>shshe22</b><br>
     </a>
+     <b>박소희</b>
     </td>
     <td align="center">
     <a href="https://github.com/rubberramen">
     <img src="https://avatars.githubusercontent.com/u/96553431?v=4" width="100px;" alt="rubberramen"/>         
     <br /><b>rubberramen</b><br>
     </a>
+    <b>왕찬현</b>
     </td>
     <td align="center">
     <a href="https://github.com/CDDcookie">
     <img src="https://avatars.githubusercontent.com/u/131220863?v=4" width="100px;" alt="CDDcookie"/>         
     <br /><b>CDDcookie</b><br>
     </a>
+    <b>전진우</b>
     </td>
 </tr>
 </table>
 
+## 🏊 🏊 🏊 🏊 🏊 역할
+
+### ⭐️ 김유범
+
+- User Page
+  - 로그인, 홈, QR
+- Admin Page
+  - 홈
+  - QR
+  - 출결 관리(통계)
+
+### ⭐️ 옥승철
+
+- User Page
+  - 마이페이지
+- Admin Page
+  - 공지사항
+
+### ⭐️ 박소희
+
+- User Page
+  - 공지사항
+- Admin Page
+  - 출결관리(회원)
+
+### ⭐️ 왕찬현
+
+- User Page
+  - 회원가입, 커리큘럼, 자주 묻는 질문
+- Admin Page
+  - 커리큘럼
+
+### ⭐️ 전진우
+
+- Admin Page
+  - 로그인, 회원관리
+
 ## 🙋 프로젝트 소개
 
-메가존 클라우드에서 클라우드 네이티브 애플리케이션 개발자 양성과정 교육을 들으면서 느낀 불편한 점들을 개선하기 위해 만들어졌습니다. Mega App에서는 교육생의 현재까지의 출결정보, 공지사항, 커리큘럼, 자주 묻는 질문, 위치 기반의 QR 출석 인증 기능을 제공합니다.
+메가존 클라우드에서 클라우드 네이티브 애플리케이션 개발자 양성과정 교육을 들으면서 느낀 불편한 점들을 개선하기 위해 만들어졌습니다. Mega App에서는 교육생의 현재까지의 출결정보, 공지사항, 커리큘럼, 자주 묻는 질문, 위치 기반의 QR 출석 인증 기능들을 제공합니다. 또한 Mega Admin에서는 관리자에게 교육생들의 출결정보, 공지사항, 커리큘럼, 회원, QR 생성 기능들을 제공합니다.
 
 ## 📺 시연 영상
 
-[![Video Label](http://img.youtube.com/vi/aea1v5ZCKHQ/0.jpg)](https://youtu.be/aea1v5ZCKHQ)
+[![Video Label](http://img.youtube.com/vi/aea1v5ZCKHQ/0.jpg)](https://youtu.be/aea1v5ZCKHQ){:target="\_blank"}
 
 ## 📦 기능
 
