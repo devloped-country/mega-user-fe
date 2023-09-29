@@ -49,7 +49,7 @@
 
 ## 📺 시연 영상
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/aea1v5ZCKHQ?si=FMNYkrX60UDzz8MU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+[![Video Label](http://img.youtube.com/vi/aea1v5ZCKHQ/0.jpg)](https://youtu.be/aea1v5ZCKHQ)
 
 ## 📦 기능
 
