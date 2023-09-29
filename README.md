@@ -91,7 +91,7 @@
 
 ## 📺 시연 영상
 
-[![Video Label](http://img.youtube.com/vi/aea1v5ZCKHQ/0.jpg)](https://youtu.be/aea1v5ZCKHQ){:target="\_blank"}
+[![Video Label](http://img.youtube.com/vi/aea1v5ZCKHQ/0.jpg)](https://youtu.be/aea1v5ZCKHQ)
 
 ## 📦 기능
 
