@@ -108,6 +108,12 @@ const handleLoginBtnClick = () => {
     })
     .catch((err) => {
       isShowingValidateMessage.value = true;
+
+      if (err.response.status === 403) {
+        validateMessage.value = '관리자의 가입승인을 기다려주세요.';
+        return;
+      }
+
       validateMessage.value = '이메일 또는 비밀번호가 틀렸어요.';
     })
     .finally(() => {

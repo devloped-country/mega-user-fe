@@ -59,7 +59,13 @@ const token = ref(VueJwtDecode.decode(localStorage.getItem('access')));
 // });
 
 const onDetect = (detectedCodes) => {
-  calcUserPosition();
+  if (!calcUserPosition()) {
+    router.push({
+      name: 'PositionAuthView',
+    });
+    return;
+  }
+
   const [qrCode] = detectedCodes;
   url.value = qrCode.rawValue;
   const [_, qr] = url.value.split('=');
@@ -81,7 +87,6 @@ const onDetect = (detectedCodes) => {
       });
     })
     .catch((err) => {
-      console.log(err);
       const status = parseInt(err.response.data.status);
 
       if (status === -1) {
@@ -117,14 +122,12 @@ const showPosition = (position) => {
 };
 
 const calcUserPosition = () => {
-  if (
-    (latitude.value < 35.172593 && latitude.value > 35.173093) ||
-    (longitude.value < 129.1303 && longitude > 129.1311)
-  ) {
-    router.push({
-      name: 'PositionAuthView',
-    });
-  }
+  return (
+    latitude.value > 35.172593 &&
+    latitude.value < 35.173093 &&
+    longitude.value > 129.1303 &&
+    longitude.value < 129.1311
+  );
 };
 </script>
 

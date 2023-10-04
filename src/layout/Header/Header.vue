@@ -44,6 +44,8 @@ const getPageTitle = () => {
       return '';
     case 'ReAuthView':
       return '';
+    case 'PositionAuthView':
+      return '';
     case 'FAQView':
       return '자주 묻는 질문';
     case 'JoinView':
@@ -78,7 +80,8 @@ watch(
       route.name === 'LoginView' ||
       route.name === 'SuccessView' ||
       route.name === 'FailView' ||
-      route.name === 'ReAuthView'
+      route.name === 'ReAuthView' ||
+      route.name === 'PositionAuthView'
     ) {
       isHeaderShowing.value = false;
       return;

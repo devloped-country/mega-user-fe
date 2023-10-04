@@ -1,7 +1,7 @@
 <template>
   <Result
     title="위치 인증 실패"
-    desc="강의장에서 인증해주세요.."
+    desc="강의장에서 인증해주세요."
     :img="positionAuth"
     route="HomeView"
   />
