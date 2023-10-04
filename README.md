@@ -1,7 +1,13 @@
-# Vue 3 + Vite
+## 📦 기능
 
-This template should help get you started developing with Vue 3 in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+### ⭐️ 단위기간 설정
 
-## Recommended IDE Setup
+- 달력을 선택하고 단위기간 TABLE 에서 ID 칼럼 1 에 해당하는 DURATION 칼럼의 값(일자)과 합친 날짜을 기준으로 SQL 의 'LIMIT? OFFSET?' 문을 사용하여 단위 기간 내의 회원의 출결 상황을 볼 수 있도록 구현하였습니다.
 
-- [VS Code](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+### ⭐️ 회원명 검색 기능
+
+- 회원명 검색 기능은 USER TABLE 에서 SQL 의 'LIKE' 구문을 활용하여 회원명 또는 그 일부를 검색하더라도 검색 결과를 볼 수 있도록 구현하였습니다.
+
+### ⭐️ 출결관리 및 출결관리 상세 페이지 페이지네이션 기능
+
+- 페이지네이션 기능은 한 페이지에 5 BLOCK 을 기준으로 9 개의 게시물이 보이도록 만들었습니다. 여기서 1 BLOCK 을 제외하고는 다음 페이지로 이동하는 버튼과 마지막 페이지로 이동하는 버튼이 보이도록 하였고, 마지막 BLOCK 을 제외하고는 이전 페이지로 이동하는 버튼과 1 페이지로 이동하는 버튼이 보이도록 구현하였습니다. 해당 페이지를 알 수 있도록 페이지 BLOCK 에 색을 칠해 구분하였습니다.
