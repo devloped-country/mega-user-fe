@@ -1,16 +1,17 @@
-import HomeView from "@/views/HomeView/HomeView.vue";
-import QrReaderView from "@/views/QrReaderView/QrReaderView.vue";
-import MyPageView from "@/views/MyPageView/MyPageView.vue";
-import CurriculumView from "@/views/CurriculumView/CurriculumView.vue";
-import NoticeView from "@/views/NoticeView/NoticeView.vue";
-import SuccessView from "@/views/SuccessView/SuccessView.vue";
-import FailView from "@/views/FailView/FailView.vue";
-import ReAuthView from "@/views/ReAuthView/ReAuthView.vue";
-import _idView from "@/views/NoticeView/_idView.vue";
+import HomeView from '@/views/HomeView/HomeView.vue';
+import QrReaderView from '@/views/QrReaderView/QrReaderView.vue';
+import MyPageView from '@/views/MyPageView/MyPageView.vue';
+import CurriculumView from '@/views/CurriculumView/CurriculumView.vue';
+import NoticeView from '@/views/NoticeView/NoticeView.vue';
+import SuccessView from '@/views/SuccessView/SuccessView.vue';
+import FailView from '@/views/FailView/FailView.vue';
+import ReAuthView from '@/views/ReAuthView/ReAuthView.vue';
+import _idView from '@/views/NoticeView/_idView.vue';
 import LoginView from '@/views/LoginView/LoginView.vue';
 import PositionAuthView from '@/views/PositionAuthView/PositionAuthView.vue';
 import FAQView from '@/views/FAQView/FAQView.vue';
 import JoinView from '@/views/JoinView/JoinView.vue';
+import PrivacyView from '@/views/PrivacyView/PrivacyView.vue';
 
 import { createRouter, createWebHistory } from 'vue-router';
 
@@ -28,12 +29,12 @@ const routes = [
   {
     path: '/notice',
     component: NoticeView,
-    name: "NoticeView",
+    name: 'NoticeView',
   },
   {
-    path: "/notice/:id",
+    path: '/notice/:id',
     component: _idView,
-    name: "_idView",
+    name: '_idView',
   },
   {
     path: '/qr',
@@ -79,6 +80,11 @@ const routes = [
     path: '/join',
     component: JoinView,
     name: 'JoinView',
+  },
+  {
+    path: '/privacy',
+    component: PrivacyView,
+    name: 'PrivacyView',
   },
 ];
 
