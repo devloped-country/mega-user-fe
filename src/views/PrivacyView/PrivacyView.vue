@@ -147,3 +147,10 @@
     >
   </p>
 </template>
+
+<style scoped>
+* {
+  text-align: center;
+  padding: 1rem;
+}
+</style>
